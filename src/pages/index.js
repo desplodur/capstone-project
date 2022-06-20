@@ -14,7 +14,7 @@ export default function HomePage() {
 	// Local state
 	const [id, setId] = useState(null);
 
-	// Global state
+	// Global state ZUSTAND
 	const counter = useStore(state => state.counter);
 	const decrementCounter = useStore(state => state.decrementCounter);
 	const incrementCounter = useStore(state => state.incrementCounter);

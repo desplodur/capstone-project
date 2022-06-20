@@ -4,31 +4,32 @@ This is a template for a [Create React App](https://create-react-app.dev/) with 
 
 <!-- toc -->
 
-- [Tech-Stack](#tech-stack)
-- [Getting started](#getting-started)
-- [Test Driven Development](#test-driven-development)
-- [Commands](#commands)
-- [Skipping linters](#skipping-linters)
+-   [Tech-Stack](#tech-stack)
+-   [Getting started](#getting-started)
+-   [Test Driven Development](#test-driven-development)
+-   [Commands](#commands)
+-   [Skipping linters](#skipping-linters)
 
 <!-- tocstop -->
 
 It uses the following tools/libraries:
 
 ## Tech-Stack
-* [Storybook](https://storybook.js.org/)
-* [Jest](https://jestjs.io/)
-* [Stylelint](https://stylelint.io/)
-* [Eslint](https://eslint.org/)
-* [Prettier](https://prettier.io/)
+
+-   [Storybook](https://storybook.js.org/)
+-   [Jest](https://jestjs.io/)
+-   [Stylelint](https://stylelint.io/)
+-   [Eslint](https://eslint.org/)
+-   [Prettier](https://prettier.io/)
 
 ## Project Setup
 
 This project uses different deployments to make code reviews easier:
 
-* Vercel (App Production)
-* Vercel (App Preview)
-* GitHub Pages (Storybook Production)
-* Surge (Storybook Preview)
+-   Vercel (App Production)
+-   Vercel (App Preview)
+-   GitHub Pages (Storybook Production)
+-   Surge (Storybook Preview)
 
 ### Set up Vercel
 
@@ -56,7 +57,7 @@ It will output something like this:
    1234567890abcdefghijklmnopqrstuv
 ```
 
-Add this token to your [GitHub secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) 
+Add this token to your [GitHub secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
 We only need it for the "Preview" Environment, but you can add it to both (see screenshot below)
 
@@ -67,7 +68,7 @@ We only need it for the "Preview" Environment, but you can add it to both (see s
 **Run the development server:**
 
 ```bash
-npm run dev
+npm run start
 ```
 
 **Run storybook:**
@@ -85,7 +86,6 @@ and [testing-library](https://testing-library.com/docs/react-testing-library/int
 
 We use commitlint to ensure conventional commit messages. You can read more about our decision in
 the [documentation](./docs/COMMITS.md).
-
 
 ## Commands
 
