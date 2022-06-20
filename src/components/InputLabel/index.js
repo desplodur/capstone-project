@@ -1,3 +1,3 @@
 export default function InputLabel({children}) {
-	return <>{children}</>;
+	return <label>{children}</label>;
 }

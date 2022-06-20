@@ -13,6 +13,6 @@ export const GlobalStyle = createGlobalStyle`
 
 	body {
 		margin: 0;
-		font-size: 3rem;
+		font-size: 1rem;
 	}
 `;
