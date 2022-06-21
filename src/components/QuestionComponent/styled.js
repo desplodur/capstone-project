@@ -7,10 +7,10 @@ const StyledQuestionComponent = styled.section`
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: ${pxToRem(8)};
 	background: #517664;
-	color: #ffffff;
-	font-size: 1em;
+	color: #fff;
 	width: 25rem;
 	height: 5rem;
+	font-size: 1em;
 	margin-bottom: ${pxToRem(8)}; ;
 `;
 
