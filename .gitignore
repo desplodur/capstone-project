@@ -36,4 +36,4 @@ cypress/cucumber-json
 .idea
 
 #Storybook
-storybook-static
+storybook-static/

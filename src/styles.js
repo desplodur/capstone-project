@@ -20,6 +20,5 @@ export const GlobalStyle = createGlobalStyle`
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-
 	}
 `;
