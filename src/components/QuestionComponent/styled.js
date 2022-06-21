@@ -11,7 +11,6 @@ const StyledQuestionComponent = styled.section`
 	border-radius: ${pxToRem(8)};
 	background: #517664;
 	color: #fff;
-
 	font-size: 1em;
 `;
 
