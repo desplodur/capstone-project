@@ -36,4 +36,4 @@ cypress/cucumber-json
 .idea
 
 # oldfiles
-src/pages/oldIndexForInspiration
+.oldIndexForInspiraton.js
