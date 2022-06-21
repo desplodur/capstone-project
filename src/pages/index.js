@@ -6,11 +6,11 @@ import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionComponent';
 
 export default function HomePage() {
-	const [questionArray, setQuestionArray] = useState([
-		{questionText: 'What is export default?'},
-		{questionText: 'What does clean code means?'},
-		{questionText: 'Why do we have to define keys?'},
-	]);
+	const questionArray = [
+		{id: nanoid(), questionText: 'What is export default?'},
+		{id: nanoid(), questionText: 'What does clean code means?'},
+		{id: nanoid(), questionText: 'Why do we have to define keys?'},
+	];
 
 	return (
 		<Layout>
@@ -18,13 +18,12 @@ export default function HomePage() {
 				<title key="title">My Project</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
-			<article>
-				{questionArray.map(question => {
-					return (
-						<QuestionComponent key={nanoid}>{question.questionText}</QuestionComponent>
-					);
-				})}
-			</article>
+			{questionArray.map(question => {
+				console.log(question.id);
+				return (
+					<QuestionComponent key={question.id}>{question.questionText}</QuestionComponent>
+				);
+			})}
 		</Layout>
 	);
 }

@@ -7,7 +7,7 @@ describe('Question Component', () => {
 	it('should render children', () => {
 		const text = 'What does clean code mean?';
 		render(<QuestionComponent>{text}</QuestionComponent>);
-		const button = screen.getByText(text);
-		expect(button).toBeInTheDocument();
+		const section = screen.getByText(text);
+		expect(section).toBeInTheDocument();
 	});
 });
