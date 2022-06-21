@@ -9,7 +9,7 @@ const StyledQuestionComponent = styled.section`
 	background: #517664;
 	color: #ffffff;
 	font-size: 1em;
-	width: 20rem;
+	width: 25rem;
 	height: 5rem;
 	margin-bottom: ${pxToRem(8)}; ;
 `;
