@@ -19,6 +19,14 @@ export default function HomePage() {
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
 			<article>
+				<h2>Is there something you did not understand?</h2>
+				<h3>Ask your classmates!</h3>
+				<form>
+					<input type="text" placeholder="...what is meant by clean code?"></input>
+					<input type="submit" value="Ask your Question"></input>
+				</form>
+			</article>
+			<article>
 				{questionArray.map(question => {
 					return (
 						<QuestionComponent key={nanoid}>{question.questionText}</QuestionComponent>
