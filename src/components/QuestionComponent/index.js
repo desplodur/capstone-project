@@ -1,4 +1,4 @@
-import StyledButton from './styled';
+import styledQuestionComponent from './styled';
 
 /**
  *
@@ -7,12 +7,8 @@ import StyledButton from './styled';
  * @return {JSX.Element}
  * @constructor
  */
-export default function Button({children, type = 'button', ...props}) {
-	return (
-		<StyledButton type={type} {...props}>
-			{children}
-		</StyledButton>
-	);
+export default function QuestionComponent({children}) {
+	return <styledQuestionComponent>{children}</styledQuestionComponent>;
 }
 
-Button.propTypes = {};
+QuestionComponent.propTypes = {};
