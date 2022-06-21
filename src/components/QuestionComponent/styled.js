@@ -5,18 +5,13 @@ import {pxToRem} from '../../utils/unit';
 const StyledQuestionComponent = styled.section`
 	padding: 0.5em 1em;
 	border: 1px solid rgba(0, 0, 0, 0.3);
-	border-radius: ${pxToRem(4)};
-	background: #fae;
-	color: #000;
+	border-radius: ${pxToRem(8)};
+	background: #517664;
+	color: #ffffff;
 	font-size: 1em;
-
-	&:hover {
-		background: #d8b;
-	}
-
-	&:active {
-		background: #bad;
-	}
+	width: 20rem;
+	height: 5rem;
+	margin-bottom: ${pxToRem(8)}; ;
 `;
 
 export default StyledQuestionComponent;

@@ -7,9 +7,9 @@ import QuestionComponent from '../components/QuestionComponent';
 
 export default function HomePage() {
 	const [questionArray, setQuestionArray] = useState([
-		{questionText: 'What doe export default?'},
-		{questionText: 'What doe export default?'},
-		{questionText: 'What doe export default?'},
+		{questionText: 'What is export default?'},
+		{questionText: 'What does clean code means?'},
+		{questionText: 'Why do we have to define keys?'},
 	]);
 
 	return (
@@ -18,10 +18,13 @@ export default function HomePage() {
 				<title key="title">My Project</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
-			<h1>Home</h1>
-			{questionArray.map(question => {
-				return <QuestionComponent key={nanoid}>{question.questionText}</QuestionComponent>;
-			})}
+			<article>
+				{questionArray.map(question => {
+					return (
+						<QuestionComponent key={nanoid}>{question.questionText}</QuestionComponent>
+					);
+				})}
+			</article>
 		</Layout>
 	);
 }
