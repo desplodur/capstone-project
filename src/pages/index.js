@@ -7,10 +7,21 @@ import QuestionComponent from '../components/QuestionComponent';
 
 export default function HomePage() {
 	const [questionArray, setQuestionArray] = useState([
-		{questionText: 'What is export default?'},
-		{questionText: 'What does clean code means?'},
-		{questionText: 'Why do we have to define keys?'},
+		{id: nanoid(), questionText: 'What is export default?'},
+		{id: nanoid(), questionText: 'What does clean code means?'},
+		{id: nanoid(), questionText: 'Why do we have to define keys?'},
 	]);
+
+	const createNewQuestion = event => {
+		event.preventDefault();
+		const newQuestion = {
+			id: nanoid(),
+			questionText: event.target.questionTextInput.value,
+		};
+		const newQuestionArray = [...questionArray, newQuestion];
+		setQuestionArray(newQuestionArray);
+		console.log(questionArray);
+	};
 
 	return (
 		<Layout>
@@ -21,8 +32,12 @@ export default function HomePage() {
 			<article>
 				<h2>Is there something you did not understand?</h2>
 				<h3>Ask your classmates!</h3>
-				<form>
-					<input type="text" placeholder="...what is meant by clean code?"></input>
+				<form onSubmit={createNewQuestion}>
+					<input
+						type="text"
+						name="questionTextInput"
+						placeholder="...what is meant by clean code?"
+					></input>
 					<input type="submit" value="Ask your Question"></input>
 				</form>
 			</article>
