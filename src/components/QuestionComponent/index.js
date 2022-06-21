@@ -1,14 +1,7 @@
-import styledQuestionComponent from './styled';
+import StyledQuestionComponent from './styled';
 
-/**
- *
- * @param {React.ReactNode} children
- * @param {React.HTMLAttributes<HTMLButtonElement>} props
- * @return {JSX.Element}
- * @constructor
- */
 export default function QuestionComponent({children}) {
-	return <styledQuestionComponent>{children}</styledQuestionComponent>;
+	return <StyledQuestionComponent>{children}</StyledQuestionComponent>;
 }
 
 QuestionComponent.propTypes = {};

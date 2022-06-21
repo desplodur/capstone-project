@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import {pxToRem} from '../../utils/unit';
 
-const styledQuestionComponent = styled.section`
+const StyledQuestionComponent = styled.section`
 	padding: 0.5em 1em;
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: ${pxToRem(4)};
@@ -19,4 +19,4 @@ const styledQuestionComponent = styled.section`
 	}
 `;
 
-export default styledQuestionComponent;
+export default StyledQuestionComponent;
