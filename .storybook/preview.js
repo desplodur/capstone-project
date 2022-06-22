@@ -12,11 +12,9 @@ export const parameters = {
 
 export const decorators = [
 	Story => {
-		return (
-			<>
-				<GlobalStyle />
-				<Story />
-			</>
-		);
+		<>
+			<GlobalStyle />
+			<Story />
+		</>;
 	},
 ];
