@@ -14,3 +14,5 @@ export default function Button({children, type = 'button', ...props}) {
 		</StyledButton>
 	);
 }
+
+Button.propTypes = {};
