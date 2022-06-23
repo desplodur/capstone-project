@@ -19,8 +19,7 @@ export default function HomePage() {
 			id: nanoid(),
 			questionText: event.target.questionTextInput.value,
 		};
-		const newQuestionArray = [...questionArray, newQuestion];
-		setQuestionArray(newQuestionArray);
+		setQuestionArray([...questionArray, newQuestion]);
 		console.log(questionArray);
 	};
 
