@@ -35,5 +35,3 @@ cypress/cucumber-json
 # IDE
 .idea
 
-# oldfiles
-.oldIndexForInspo.js

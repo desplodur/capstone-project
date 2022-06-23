@@ -15,10 +15,4 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		font-size: 1rem;
 	}
-
-	main{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
 `;
