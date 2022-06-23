@@ -3,7 +3,6 @@ import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Layout from '../components/Layout';
-import QuestionComponent from '../components/QuestionComponent';
 import QuestionForm from '../components/QuestionForm';
 
 export default function HomePage() {
