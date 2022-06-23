@@ -4,4 +4,3 @@ export default function QuestionComponent({children}) {
 	return <StyledQuestionComponent>{children}</StyledQuestionComponent>;
 }
 
-QuestionComponent.propTypes = {};

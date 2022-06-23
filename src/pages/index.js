@@ -1,5 +1,4 @@
 import {nanoid} from 'nanoid';
-import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Layout from '../components/Layout';
@@ -30,6 +29,7 @@ export default function HomePage() {
 				<title key="title">My Project</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
+
 			<QuestionForm onSubmitFunction={createNewQuestion} />
 			<article>
 				{questionArray.map(question => {
