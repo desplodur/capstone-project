@@ -4,7 +4,7 @@ import {fireEvent, render, screen} from '@testing-library/react';
 
 import Form from '.';
 
-describe('Question Form', () => {
+describe('Form', () => {
 	it('should render form', () => {
 		render(<Form />);
 		const submitButton = screen.getByRole('button', {type: 'submit'});
@@ -12,7 +12,7 @@ describe('Question Form', () => {
 	});
 });
 
-describe('Question form submit button', () => {
+describe('Form submit button', () => {
 	it('should submit the form', async () => {
 		const onSubmitHandler = jest.fn(event => {
 			event.preventDefault();
@@ -24,7 +24,7 @@ describe('Question form submit button', () => {
 	});
 });
 
-describe('Question form', () => {
+describe('Form', () => {
 	it('should return the input field value', async () => {
 		render(<Form />);
 		const inputField = screen.getByRole('textbox', {type: 'text'});

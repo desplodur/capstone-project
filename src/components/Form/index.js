@@ -4,7 +4,7 @@ export default function Form({onSubmit, submitButtonValue}) {
 	return (
 		<StyledForm onSubmit={onSubmit}>
 			<input type="text" name="inputField" placeholder="..." required />
-			<button type="submit" value="Ask your Question">
+			<button type="submit" value="Submit the form">
 				{submitButtonValue}
 			</button>
 		</StyledForm>
