@@ -7,7 +7,7 @@ import QuestionComponent from '../components/QuestionComponent';
 import QuestionForm from '../components/QuestionForm';
 
 export default function HomePage() {
-	const [questionArray, setQuestionArray] = useState([
+	const [questions, setQuestions] = useState([
 		{id: nanoid(), questionText: 'What is export default?'},
 		{id: nanoid(), questionText: 'What does clean code means?'},
 		{id: nanoid(), questionText: 'Why do we have to define keys?'},
@@ -19,8 +19,7 @@ export default function HomePage() {
 			id: nanoid(),
 			questionText: event.target.questionTextInput.value,
 		};
-		setQuestionArray([...questionArray, newQuestion]);
-		console.log(questionArray);
+		setQuestions([...questions, newQuestion]);
 	};
 
 	return (
@@ -30,9 +29,9 @@ export default function HomePage() {
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
 
-			<QuestionForm onSubmitFunction={createNewQuestion} />
+			<QuestionForm onSubmit={createNewQuestion} />
 			<article>
-				{questionArray.map(question => {
+				{questions.map(question => {
 					return (
 						<QuestionComponent key={nanoid}>{question.questionText}</QuestionComponent>
 					);

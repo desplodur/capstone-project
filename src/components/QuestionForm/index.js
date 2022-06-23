@@ -1,8 +1,8 @@
 import StyledQuestionForm from './styled';
 
-export default function QuestionForm({onSubmitFunction}) {
+export default function QuestionForm({onSubmit}) {
 	return (
-		<StyledQuestionForm onSubmit={onSubmitFunction}>
+		<StyledQuestionForm onSubmit={onSubmit}>
 			<label>
 				<h2>Is there something you did not understand?</h2>
 				<h3>Ask your classmates!</h3>

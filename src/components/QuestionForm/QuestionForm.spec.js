@@ -14,26 +14,21 @@ describe('Question Form', () => {
 
 describe('Question form submit button', () => {
 	it('should submit the form', async () => {
-		const onSubmit = jest.fn(event => {
+		const onSubmitHandler = jest.fn(event => {
 			event.preventDefault();
 		});
-		render(<QuestionForm onSubmitFunction={onSubmit} />);
+		render(<QuestionForm onSubmit={onSubmitHandler} />);
 		const submitButton = screen.getByRole('button', {type: 'submit'});
 		await fireEvent.click(submitButton);
-		expect(onSubmit).toHaveBeenCalledTimes(1);
+		expect(onSubmitHandler).toHaveBeenCalledTimes(1);
 	});
 });
 
-describe('Question form submit', () => {
+describe('Question form', () => {
 	it('should return the input field value', async () => {
-		const onSubmit = jest.fn(event => {
-			event.preventDefault();
-			fireEvent.change(inputField, {target: {value: 'test'}});
-		});
-		render(<QuestionForm onSubmitFunction={onSubmit} />);
-		const submitButton = screen.getByRole('button', {type: 'submit'});
+		render(<QuestionForm />);
 		const inputField = screen.getByRole('textbox', {type: 'text'});
-		await fireEvent.click(submitButton);
+		fireEvent.change(inputField, {target: {value: 'test'}});
 		expect(inputField.value).toBe('test');
 	});
 });
