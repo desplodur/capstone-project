@@ -14,17 +14,6 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0;
 		font-size: 1rem;
-<<<<<<< HEAD
-	}
-<<<<<<< HEAD
-=======
 
-	main{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-=======
->>>>>>> 326f226 (change styles.js to 1 rem)
 	}
->>>>>>> 78efc30 (change styles)
 `;
