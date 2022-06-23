@@ -36,6 +36,5 @@ cypress/cucumber-json
 .idea
 
 # unused hooks
-/hooks/
-useFetch.js
-useStore.js
+.useFetch.js
+.useStore.js
