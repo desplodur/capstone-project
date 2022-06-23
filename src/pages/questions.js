@@ -14,8 +14,12 @@ export default function QuestionPage() {
 	return (
 		<Layout>
 			<Helmet>
-				<title key="title">My Project</title>
-				<meta key="description" name="description" content="This is my project" />
+				<title key="title">Question Area</title>
+				<meta
+					key="description"
+					name="description"
+					content="Here you can see all the Questions"
+				/>
 			</Helmet>
 			<article>
 				{questions.map(question => {
