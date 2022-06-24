@@ -2,31 +2,31 @@ import {expect} from '@jest/globals';
 import '@testing-library/jest-dom';
 import {fireEvent, render, screen} from '@testing-library/react';
 
-import QuestionForm from './';
+import Form from '.';
 
-describe('Question Form', () => {
+describe('Form', () => {
 	it('should render form', () => {
-		const {getByText} = render(<QuestionForm />);
-		const questionMessage = getByText('Is there something you did not understand?');
-		expect(questionMessage).toBeInTheDocument();
+		render(<Form />);
+		const submitButton = screen.getByRole('button', {type: 'submit'});
+		expect(submitButton).toBeInTheDocument();
 	});
 });
 
-describe('Question form submit button', () => {
+describe('Form submit button', () => {
 	it('should submit the form', async () => {
 		const onSubmitHandler = jest.fn(event => {
 			event.preventDefault();
 		});
-		render(<QuestionForm onSubmit={onSubmitHandler} />);
+		render(<Form onSubmit={onSubmitHandler} />);
 		const submitButton = screen.getByRole('button', {type: 'submit'});
 		await fireEvent.click(submitButton);
 		expect(onSubmitHandler).toHaveBeenCalledTimes(1);
 	});
 });
 
-describe('Question form', () => {
+describe('Form', () => {
 	it('should return the input field value', async () => {
-		render(<QuestionForm />);
+		render(<Form />);
 		const inputField = screen.getByRole('textbox', {type: 'text'});
 		fireEvent.change(inputField, {target: {value: 'test'}});
 		expect(inputField.value).toBe('test');
