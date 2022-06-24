@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import Home from './pages';
-import About from './pages/about';
+import QuestionPage from './pages/questions';
 import {GlobalStyle} from './styles';
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
 				<Routes>
 					<Route path="/">
 						<Route index element={<Home />} />
-						<Route path="about/" element={<About />} />
+						<Route path="questions/" element={<QuestionPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

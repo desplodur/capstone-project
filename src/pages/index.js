@@ -4,7 +4,6 @@ import {Helmet} from 'react-helmet';
 
 import Form from '../components/Form';
 import Layout from '../components/Layout';
-import QuestionComponent from '../components/QuestionComponent';
 
 export default function HomePage() {
 	const [questions, setQuestions] = useState([
@@ -33,15 +32,6 @@ export default function HomePage() {
 				<h3>Ask your classmates!</h3>
 				<Form onSubmit={createNewQuestion} submitButtonValue={'Ask your Question'} />
 			</label>
-			<article>
-				{questions.map(question => {
-					return (
-						<QuestionComponent key={question.id}>
-							{question.questionText}
-						</QuestionComponent>
-					);
-				})}
-			</article>
 		</Layout>
 	);
 }
