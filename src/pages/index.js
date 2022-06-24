@@ -30,7 +30,7 @@ export default function HomePage() {
 			<label>
 				<h2>Is there something you did not understand?</h2>
 				<h3>Ask your classmates!</h3>
-				<Form onSubmit={createNewQuestion} submitButtonValue={'Ask your Question'} />
+				<Form onSubmit={createNewQuestion} submitButtonText={'Ask your Question'} />
 			</label>
 		</Layout>
 	);

@@ -1,11 +1,11 @@
 import StyledForm from './styled';
 
-export default function Form({onSubmit, submitButtonValue}) {
+export default function Form({onSubmit, submitButtonText}) {
 	return (
 		<StyledForm onSubmit={onSubmit}>
 			<input type="text" name="inputField" placeholder="..." required />
 			<button type="submit" value="Submit the form">
-				{submitButtonValue}
+				{submitButtonText}
 			</button>
 		</StyledForm>
 	);
