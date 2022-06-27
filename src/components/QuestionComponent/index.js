@@ -10,9 +10,7 @@ export default function QuestionComponent({question, addAnswer}) {
 	return (
 		<StyledQuestionComponent>
 			<h4>{question.questionText}</h4>
-			{toggle ? (
-				''
-			) : (
+			{!toggle && (
 				<>
 					<article>
 						{question.answers.map(answer => {
