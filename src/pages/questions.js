@@ -1,31 +1,12 @@
 import {nanoid} from 'nanoid';
-import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionComponent';
+import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
-	const [questions, setQuestions] = useState([
-		{
-			id: nanoid(),
-			questionText: 'What is export default?',
-			answers: [
-				{id: nanoid(), answerText: 'its ...'},
-				{id: nanoid(), answerText: 'it means that ...'},
-			],
-		},
-		{
-			id: nanoid(),
-			questionText: 'What does clean code means?',
-			answers: [{id: nanoid(), answerText: 'its ...'}],
-		},
-		{
-			id: nanoid(),
-			questionText: 'Why do we have to define keys?',
-			answers: [],
-		},
-	]);
+	const questions = useStore(state => state.questions);
 
 	const addAnswer = (event, id) => {
 		event.preventDefault();
@@ -38,8 +19,7 @@ export default function QuestionPage() {
 		};
 		const newQuestions = [...questions];
 		newQuestions[index].answers = [...newQuestions[index].answers, newAnswer];
-		setQuestions(newQuestions);
-		//setQuestions(newQuestions);
+		//addNewAnswer(newQuestions);
 	};
 
 	return (
@@ -55,7 +35,11 @@ export default function QuestionPage() {
 			<article>
 				{questions.map(question => {
 					return (
-						<QuestionComponent key={nanoid} question={question} addAnswer={addAnswer} />
+						<QuestionComponent
+							key={question.id}
+							question={question}
+							addAnswer={addAnswer}
+						/>
 					);
 				})}
 			</article>
