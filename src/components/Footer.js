@@ -1,7 +1,9 @@
+import NavBar from './navbar';
+
 export default function Footer() {
 	return (
 		<footer>
-			<div>© 2022 by Me</div>
+			<NavBar />
 		</footer>
 	);
 }
