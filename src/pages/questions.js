@@ -7,6 +7,7 @@ import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
 	const questions = useStore(state => state.questions);
+	const addNewAnswer = useStore(state => state.questions);
 
 	const addAnswer = (event, id) => {
 		event.preventDefault();
@@ -19,7 +20,7 @@ export default function QuestionPage() {
 		};
 		const newQuestions = [...questions];
 		newQuestions[index].answers = [...newQuestions[index].answers, newAnswer];
-		//addNewAnswer(newQuestions);
+		addNewAnswer(newQuestions);
 	};
 
 	return (

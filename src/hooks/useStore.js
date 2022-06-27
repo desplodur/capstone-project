@@ -11,4 +11,11 @@ export const useStore = create((set, get) => ({
 			};
 		});
 	},
+	addNewAnswers: newQuestions => {
+		set(() => {
+			return {
+				questions: newQuestions,
+			};
+		});
+	},
 }));
