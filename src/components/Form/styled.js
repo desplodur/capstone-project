@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 
-import {pxToRem} from '../../utils/unit';
-
 const StyledForm = styled.form`
-	width: 25rem;
-	margin-bottom: ${pxToRem(8)};
-	padding: 0.5em 1em;
-	font-size: 1em;
+	margin: 0 auto;
+	padding: 1em 0 1em 0;
+
+	button {
+		border: 2px solid var(--dark);
+		border-radius: 0 5px 5px 0;
+		height: 2em;
+		background-color: var(--dark);
+		color: var(--light);
+	}
+	input {
+		border: 2px solid var(--dark);
+		border-radius: 5px 0 0 5px;
+		height: 2em;
+		background-color: var(--light);
+	}
 `;
 
 export default StyledForm;

@@ -24,15 +24,13 @@ export default function HomePage() {
 				<title key="title">My Project</title>
 				<meta key="description" name="description" content="This is my project" />
 			</Helmet>
-			<label>
-				<h2>Is there something you did not understand?</h2>
-				<h3>Ask your classmates!</h3>
-				<Form
-					onSubmit={createNewQuestion}
-					placeholderText={'...'}
-					submitButtonText={'Ask your Question'}
-				/>
-			</label>
+			<h3>Is there something you did not understand?</h3>
+			<h3>Ask your classmates!</h3>
+			<Form
+				onSubmit={createNewQuestion}
+				placeholderText={'...'}
+				submitButtonText={'Ask your Question'}
+			/>
 		</Layout>
 	);
 }
