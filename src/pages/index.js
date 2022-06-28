@@ -1,24 +1,21 @@
 import {nanoid} from 'nanoid';
-import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Form from '../components/Form';
 import Layout from '../components/Layout';
+import {useStore} from '../hooks/useStore';
 
 export default function HomePage() {
-	const [questions, setQuestions] = useState([
-		{id: nanoid(), questionText: 'What is export default?'},
-		{id: nanoid(), questionText: 'What does clean code means?'},
-		{id: nanoid(), questionText: 'Why do we have to define keys?'},
-	]);
+	const addNewQuestion = useStore(state => state.addNewQuestion);
 
 	const createNewQuestion = event => {
 		event.preventDefault();
 		const newQuestion = {
 			id: nanoid(),
 			questionText: event.target.inputField.value,
+			answers: [],
 		};
-		setQuestions([...questions, newQuestion]);
+		addNewQuestion(newQuestion);
 	};
 
 	return (
