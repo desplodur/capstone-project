@@ -4,7 +4,7 @@ import questionDatabase from '../utils/db';
 
 export const useStore = create(set => ({
 	questions: [...questionDatabase],
-	addNewAnswers: newQuestion => {
+	addNewAnswer: newQuestion => {
 		set(() => {
 			return {
 				questions: newQuestion,
