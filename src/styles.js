@@ -19,10 +19,10 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
-		background-color: var(--light);
 		margin: 0;
-		font-size: 1rem;
+		background-color: var(--light);
 		color: var(--dark);
+		font-size: 1rem;
 	}
 	
 	main {
