@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 		--light: #fff;
 		--dark: #343434;
 		--blue: #14213d;
-		--signal: #F1C40F;
+		--signal: #f6ae2d;
 	}
 
 	html {
@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 	main {
 		display: flex;
 		flex-direction: column;
+		flex-wrap: nowrap;
 		align-items: center;
 		justify-content: center;		
 	}

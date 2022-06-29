@@ -1,5 +1,6 @@
 import {useState} from 'react';
 
+import Dialog from '../Dialog';
 import Form from '../Form';
 
 import StyledProfile from './styled';
@@ -7,6 +8,7 @@ import StyledProfile from './styled';
 export default function ProfileComponent() {
 	const [username, setUserName] = useState('Laurenz');
 	const [toggle, setToggle] = useState(true);
+	const [open, setOpen] = useState(false);
 
 	const changeUsername = event => {
 		event.preventDefault();
@@ -22,12 +24,18 @@ export default function ProfileComponent() {
 					onSubmit={event => {
 						changeUsername(event);
 						setToggle(!toggle);
+						setOpen(!open);
+						setTimeout(() => {
+							setOpen(false);
+						}, 1000);
 					}}
 					placeholderText={username}
 					submitButtonText={'Change your Username'}
 				/>
 			)}
-
+			<Dialog open={open}>
+				<h3>Username changed</h3>
+			</Dialog>
 			<button
 				onClick={() => {
 					setToggle(!toggle);
