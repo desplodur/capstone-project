@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
 	
 	main {
 		display: flex;
-		flex-wrap: nowrap;
 		flex-direction: column;
 		flex-wrap: nowrap;
 		align-items: center;
