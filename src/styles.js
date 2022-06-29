@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	:root{
-		--light: #ffffff;
+		--light: #fff;
 		--dark: #343434;
 		--blue: #14213d;
 		--signal: #F1C40F;
@@ -19,21 +19,20 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
+		background-color: var(--light);
 		margin: 0;
 		font-size: 1rem;
-		background-color: var(--light);
 		color: var(--dark);
 	}
 	
 	main {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
-		
+		justify-content: center;		
 	}
 
-	Footer {
+	footer {
 		position: fixed;
 		bottom: 0;
 		width: 100%

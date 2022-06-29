@@ -5,16 +5,16 @@ const StyledForm = styled.form`
 	padding: 1em 0 1em 0;
 
 	button {
+		height: 2em;
 		border: 2px solid var(--dark);
 		border-radius: 0 5px 5px 0;
-		height: 2em;
 		background-color: var(--dark);
 		color: var(--light);
 	}
 	input {
+		height: 2em;
 		border: 2px solid var(--dark);
 		border-radius: 5px 0 0 5px;
-		height: 2em;
 		background-color: var(--light);
 	}
 `;
