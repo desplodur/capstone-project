@@ -8,7 +8,7 @@ import StyledQuestionComponent from './styled';
 
 export default function QuestionComponent({question}) {
 	const [toggle, setToggle] = useState(true);
-	const [showEditQuestion, setShowEditQuestion] = useState(false);
+	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 
@@ -41,11 +41,11 @@ export default function QuestionComponent({question}) {
 
 	return (
 		<StyledQuestionComponent>
-			{showEditQuestion ? (
+			{showEditQuestionForm ? (
 				<Form
 					onSubmit={event => {
 						editQuestion(event, question.id);
-						setShowEditQuestion(false);
+						setShowEditQuestionForm(false);
 					}}
 					placeholderText={question.questionText}
 					submitButtonText={'->'}
@@ -59,7 +59,7 @@ export default function QuestionComponent({question}) {
 					<button
 						className="editButton"
 						onClick={() => {
-							setShowEditQuestion(!showEditQuestion);
+							setShowEditQuestionForm(!showEditQuestionForm);
 						}}
 					>
 						<svg
