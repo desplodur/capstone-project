@@ -53,7 +53,6 @@ export default function QuestionComponent({question}) {
 			) : (
 				<h4>{question.questionText}</h4>
 			)}
-
 			{!toggle && (
 				<>
 					<button

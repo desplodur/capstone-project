@@ -1,35 +1,45 @@
 import {useState} from 'react';
 
+import {useStore} from '../../hooks/useStore';
 import Dialog from '../Dialog';
 import Form from '../Form';
 
 import StyledProfile from './styled';
 
 export default function ProfileComponent() {
-	const [username, setUserName] = useState('Laurenz');
+	const users = useStore(state => state.users);
+	const activeUser = useStore(state => state.activeUser);
+	const setActiveUser = useStore(state => state.setActiveUser);
 	const [toggle, setToggle] = useState(true);
 	const [open, setOpen] = useState(false);
 
-	const changeUsername = event => {
-		event.preventDefault();
-		setUserName(event.target.inputField.value);
-	};
+	function changeActiveUser() {
+		users.map(user => {
+			if (user !== activeUser) {
+				setActiveUser(user);
+			}
+			return user;
+		});
+	}
 
 	return (
 		<StyledProfile>
+			<label>
+				<button onClick={changeActiveUser}>Switch user</button>
+			</label>
+
 			{toggle ? (
-				<h1>{'Username: ' + username}</h1>
+				<h1>{'Username: ' + activeUser.userName}</h1>
 			) : (
 				<Form
 					onSubmit={event => {
-						changeUsername(event);
 						setToggle(!toggle);
 						setOpen(!open);
 						setTimeout(() => {
 							setOpen(false);
 						}, 1000);
 					}}
-					placeholderText={username}
+					placeholderText={activeUser.userName}
 					submitButtonText={'Change your Username'}
 				/>
 			)}
