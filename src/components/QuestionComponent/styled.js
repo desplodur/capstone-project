@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import {pxToRem} from '../../utils/unit';
 
 const StyledQuestionComponent = styled.section`
+	position: relative;
 	width: 20rem;
 	margin: 0.5em 0 0.5em 0;
-	padding: 0.5em 0.2em 0.5em 0.2em;
+	padding: 0 0.2em 0 0.2em;
 	border: 2px solid var(--dark);
 	border-radius: ${pxToRem(8)};
 	background-color: var(--blue);
