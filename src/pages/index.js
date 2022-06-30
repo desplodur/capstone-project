@@ -9,6 +9,7 @@ import {useStore} from '../hooks/useStore';
 
 export default function HomePage() {
 	const addNewQuestion = useStore(state => state.addNewQuestion);
+	const activeUser = useStore(state => state.activeUser);
 	const [open, setOpen] = useState(false);
 
 	const createNewQuestion = event => {
@@ -17,6 +18,7 @@ export default function HomePage() {
 			id: nanoid(),
 			questionText: event.target.inputField.value,
 			answers: [],
+			userID: activeUser.userID,
 		};
 		addNewQuestion(newQuestion);
 		event.target.reset();

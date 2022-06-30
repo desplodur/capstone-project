@@ -2,11 +2,11 @@ import {nanoid} from 'nanoid';
 
 const userDatabase = [
 	{
-		id: nanoid(),
+		userID: nanoid(),
 		userName: 'Laurenz',
 	},
 	{
-		id: nanoid(),
+		userID: nanoid(),
 		userName: 'Theo',
 	},
 ];

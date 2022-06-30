@@ -41,11 +41,11 @@ export const GlobalStyle = createGlobalStyle`
 	
 	.editButton{
 		position: absolute;
-		color: var(--light);
 		top: 20px;
 		right: 10px;
 		border: none;
 		background-color: transparent;
+		color: var(--light);
 		font-size: 0.4rem;
 	}
 `;
