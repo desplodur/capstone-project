@@ -38,14 +38,4 @@ export const GlobalStyle = createGlobalStyle`
 		bottom: 0;
 		width: 100%
 	}
-	
-	.editButton{
-		position: absolute;
-		top: 20px;
-		right: 10px;
-		border: none;
-		background-color: transparent;
-		color: var(--light);
-		font-size: 0.4rem;
-	}
 `;
