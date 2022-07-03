@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
-	margin: 0 auto;
 	height: 2em;
+	margin: 0 auto;
 
 	input {
 		height: 100%;

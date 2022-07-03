@@ -1,8 +1,8 @@
 import styled, {css} from 'styled-components';
 
 const StyledButton = styled.button`
-	background-color: transparent;
 	border: none;
+	background-color: transparent;
 	color: var(--light);
 	${props =>
 		props.submitButton
@@ -16,9 +16,8 @@ const StyledButton = styled.button`
 	${props =>
 		props.toggleButton
 			? css`
-					height: 2em;
 					width: 100%;
-					border: 2px solid var(--dark);
+					font-size: 1.2em;
 					border-radius: 0 0 5px 5px;
 					background-color: var(--dark);
 			  `
