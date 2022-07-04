@@ -22,7 +22,6 @@ const StyledButton = styled.button`
 					background-color: var(--dark);
 			  `
 			: null}
-	
 	${props =>
 		props.editButtonSmall
 			? css`

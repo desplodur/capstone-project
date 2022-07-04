@@ -34,7 +34,8 @@ export const useStore = create(
 			},
 		}),
 		{
-			name: 'question-storage', 
-			getStorage: () => sessionStorage, 
+			name: 'question-storage',
+			getStorage: () => sessionStorage,
+		}
 	)
 );
