@@ -34,8 +34,7 @@ export const useStore = create(
 			},
 		}),
 		{
-			name: 'food-storage', // unique name
-			getStorage: () => sessionStorage, // (optional) by default, 'localStorage' is used
-		}
+			name: 'question-storage', 
+			getStorage: () => sessionStorage, 
 	)
 );
