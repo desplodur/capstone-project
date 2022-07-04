@@ -8,10 +8,10 @@ export const useStore = create(
 	persist(
 		set => ({
 			questions: [...questionDatabase],
-			addNewAnswer: newQuestion => {
+			setQuestions: newQuestions => {
 				set(() => {
 					return {
-						questions: newQuestion,
+						questions: newQuestions,
 					};
 				});
 			},

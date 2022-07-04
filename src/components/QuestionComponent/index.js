@@ -11,7 +11,7 @@ export default function QuestionComponent({question}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions);
-	const addNewAnswer = useStore(state => state.addNewAnswer);
+	const setQuestions = useStore(state => state.setQuestions);
 	const activeUser = useStore(state => state.activeUser);
 
 	const addAnswer = (event, id) => {
@@ -27,7 +27,7 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		addNewAnswer(newQuestions);
+		setQuestions(newQuestions);
 		event.target.reset();
 	};
 
@@ -39,7 +39,7 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		addNewAnswer(newQuestions);
+		setQuestions(newQuestions);
 		event.target.reset();
 	};
 
@@ -51,7 +51,7 @@ export default function QuestionComponent({question}) {
 			return question;
 		});
 		console.log(newQuestions);
-		addNewAnswer(newQuestions);
+		setQuestions(newQuestions);
 	};
 
 	return (
