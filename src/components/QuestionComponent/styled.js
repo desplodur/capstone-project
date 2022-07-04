@@ -4,9 +4,8 @@ import {pxToRem} from '../../utils/unit';
 
 const StyledQuestionComponent = styled.section`
 	position: relative;
-	width: 20rem;
+	width: 80vw;
 	margin: 0.5em 0 0.5em 0;
-	padding: 0 0.2em 0 0.2em;
 	border: 2px solid var(--dark);
 	border-radius: ${pxToRem(8)};
 	background-color: var(--blue);

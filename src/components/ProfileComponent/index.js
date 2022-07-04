@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
+import Button from '../Button';
 import Dialog from '../Dialog';
 import Form from '../Form';
 
@@ -25,7 +26,9 @@ export default function ProfileComponent() {
 	return (
 		<StyledProfile>
 			<label>
-				<button onClick={changeActiveUser}>Switch user</button>
+				<Button toggleButton={true} onClick={changeActiveUser}>
+					Switch user
+				</Button>
 			</label>
 
 			{toggle ? (
@@ -46,7 +49,8 @@ export default function ProfileComponent() {
 			<Dialog open={open}>
 				<h3>Username changed</h3>
 			</Dialog>
-			<button
+			<Button
+				editButtonBig={true}
 				onClick={() => {
 					setToggle(!toggle);
 				}}
@@ -99,7 +103,7 @@ export default function ProfileComponent() {
 						</path>
 					</g>
 				</svg>
-			</button>
+			</Button>
 		</StyledProfile>
 	);
 }

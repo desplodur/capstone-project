@@ -2,6 +2,7 @@ import {nanoid} from 'nanoid';
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
+import Button from '../Button';
 import Form from '../Form';
 
 import StyledQuestionComponent from './styled';
@@ -59,8 +60,8 @@ export default function QuestionComponent({question}) {
 			{!toggle && (
 				<>
 					{question.userID === activeUser.userID && (
-						<button
-							className="editButton"
+						<Button
+							editButtonSmall={true}
 							onClick={() => {
 								setShowEditQuestionForm(!showEditQuestionForm);
 							}}
@@ -113,7 +114,7 @@ export default function QuestionComponent({question}) {
 									</path>
 								</g>
 							</svg>
-						</button>
+						</Button>
 					)}
 
 					<article>
@@ -132,13 +133,14 @@ export default function QuestionComponent({question}) {
 					</article>
 				</>
 			)}
-			<button
+			<Button
+				toggleButton={true}
 				onClick={() => {
 					setToggle(!toggle);
 				}}
 			>
 				{toggle ? 'Show answers' : 'Hide answers'}
-			</button>
+			</Button>
 		</StyledQuestionComponent>
 	);
 }
