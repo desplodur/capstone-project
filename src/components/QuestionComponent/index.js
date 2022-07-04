@@ -43,6 +43,17 @@ export default function QuestionComponent({question}) {
 		event.target.reset();
 	};
 
+	const closeQuestion = id => {
+		const newQuestions = questions.map(question => {
+			if (id === question.id) {
+				question.answered = !question.answered;
+			}
+			return question;
+		});
+		console.log(newQuestions);
+		addNewAnswer(newQuestions);
+	};
+
 	return (
 		<StyledQuestionComponent>
 			{showEditQuestionForm ? (
@@ -116,7 +127,6 @@ export default function QuestionComponent({question}) {
 							</svg>
 						</Button>
 					)}
-
 					<article>
 						{question.answers.map(answer => {
 							return <p key={answer.id}>{answer.answerText}</p>;
@@ -131,10 +141,17 @@ export default function QuestionComponent({question}) {
 							submitButtonText={'->'}
 						/>
 					</article>
+					<Button
+						onClick={() => {
+							closeQuestion(question.id);
+						}}
+					>
+						{!question.answered ? 'Mark as closed' : 'Open question'}
+					</Button>
 				</>
 			)}
 			<Button
-				toggleButton={true}
+				greyButton={true}
 				onClick={() => {
 					setToggle(!toggle);
 				}}

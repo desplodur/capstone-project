@@ -19,6 +19,7 @@ export default function HomePage() {
 			questionText: event.target.inputField.value,
 			answers: [],
 			userID: activeUser.userID,
+			answered: false,
 		};
 		addNewQuestion(newQuestion);
 		event.target.reset();
