@@ -22,6 +22,11 @@ const StyledQuestionComponent = styled.section`
 		top: 10px;
 		right: 10px;
 	}
+
+	Button#closeButton {
+		background-color: var(--dark);
+		border-radius: 5px;
+	}
 `;
 
 export default StyledQuestionComponent;

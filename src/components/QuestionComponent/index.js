@@ -136,6 +136,7 @@ export default function QuestionComponent({question}) {
 								</svg>
 							</Button>
 							<Button
+								id="closeButton"
 								onClick={() => {
 									closeQuestion(question.id);
 								}}
@@ -162,11 +163,11 @@ export default function QuestionComponent({question}) {
 			) : (
 				<img
 					src={
-						question.answered
+						!question.answered
 							? require('../../utils/icons/statusOpen.svg').default
 							: require('../../utils/icons/statusClosed.svg').default
 					}
-					alt={question.answered ? 'Open' : 'Closed'}
+					alt={!question.answered ? 'Open' : 'Closed'}
 				/>
 			)}
 			<Button
