@@ -50,7 +50,6 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		console.log(newQuestions);
 		setQuestions(newQuestions);
 	};
 
