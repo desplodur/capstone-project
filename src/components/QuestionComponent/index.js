@@ -159,7 +159,14 @@ export default function QuestionComponent({question}) {
 					</article>
 				</>
 			) : (
-				<img src={require('../../utils/icons/statusOpen.svg').default} alt="mySvgImage" />
+				<img
+					src={
+						question.answered
+							? require('../../utils/icons/statusOpen.svg').default
+							: require('../../utils/icons/statusClosed.svg').default
+					}
+					alt={question.answered ? 'Open' : 'Closed'}
+				/>
 			)}
 			<Button
 				greyButton={true}
