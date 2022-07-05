@@ -50,7 +50,6 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		console.log(newQuestions);
 		setQuestions(newQuestions);
 	};
 
@@ -68,7 +67,7 @@ export default function QuestionComponent({question}) {
 			) : (
 				<h4>{question.questionText}</h4>
 			)}
-			{!toggle && (
+			{!toggle ? (
 				<>
 					{question.userID === activeUser.userID && (
 						<>
@@ -159,6 +158,8 @@ export default function QuestionComponent({question}) {
 						/>
 					</article>
 				</>
+			) : (
+				<img src={require('../../utils/icons/statusOpen.svg').default} alt="mySvgImage" />
 			)}
 			<Button
 				greyButton={true}
