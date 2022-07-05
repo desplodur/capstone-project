@@ -11,7 +11,7 @@ export default function QuestionComponent({question}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions);
-	const addNewAnswer = useStore(state => state.addNewAnswer);
+	const setQuestions = useStore(state => state.setQuestions);
 	const activeUser = useStore(state => state.activeUser);
 
 	const addAnswer = (event, id) => {
@@ -27,7 +27,7 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		addNewAnswer(newQuestions);
+		setQuestions(newQuestions);
 		event.target.reset();
 	};
 
@@ -39,8 +39,18 @@ export default function QuestionComponent({question}) {
 			}
 			return question;
 		});
-		addNewAnswer(newQuestions);
+		setQuestions(newQuestions);
 		event.target.reset();
+	};
+
+	const closeQuestion = id => {
+		const newQuestions = questions.map(question => {
+			if (id === question.id) {
+				question.answered = !question.answered;
+			}
+			return question;
+		});
+		setQuestions(newQuestions);
 	};
 
 	return (
@@ -60,63 +70,79 @@ export default function QuestionComponent({question}) {
 			{!toggle && (
 				<>
 					{question.userID === activeUser.userID && (
-						<Button
-							editButtonSmall={true}
-							onClick={() => {
-								setShowEditQuestionForm(!showEditQuestionForm);
-							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								aria-hidden="true"
-								role="img"
-								width="4em"
-								height="4em"
-								preserveAspectRatio="xMidYMid meet"
-								viewBox="0 0 24 24"
+						<>
+							<Button
+								editButtonSmall={true}
+								onClick={() => {
+									setShowEditQuestionForm(!showEditQuestionForm);
+								}}
 							>
-								<g
-									fill="none"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+									role="img"
+									width="4em"
+									height="4em"
+									preserveAspectRatio="xMidYMid meet"
+									viewBox="0 0 24 24"
 								>
-									<path strokeDasharray="20" strokeDashoffset="20" d="M3 21H21">
-										<animate
-											fill="freeze"
-											attributeName="stroke-dashoffset"
-											dur="0.3s"
-											values="20;0"
-										/>
-									</path>
-									<path
-										strokeDasharray="44"
-										strokeDashoffset="44"
-										d="M7 17V13L17 3L21 7L11 17H7"
+									<g
+										fill="none"
+										stroke="currentColor"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
 									>
-										<animate
-											fill="freeze"
-											attributeName="stroke-dashoffset"
-											begin="0.4s"
-											dur="0.6s"
-											values="44;0"
-										/>
-									</path>
-									<path strokeDasharray="8" strokeDashoffset="8" d="M14 6L18 10">
-										<animate
-											fill="freeze"
-											attributeName="stroke-dashoffset"
-											begin="1s"
-											dur="0.2s"
-											values="8;0"
-										/>
-									</path>
-								</g>
-							</svg>
-						</Button>
+										<path
+											strokeDasharray="20"
+											strokeDashoffset="20"
+											d="M3 21H21"
+										>
+											<animate
+												fill="freeze"
+												attributeName="stroke-dashoffset"
+												dur="0.3s"
+												values="20;0"
+											/>
+										</path>
+										<path
+											strokeDasharray="44"
+											strokeDashoffset="44"
+											d="M7 17V13L17 3L21 7L11 17H7"
+										>
+											<animate
+												fill="freeze"
+												attributeName="stroke-dashoffset"
+												begin="0.4s"
+												dur="0.6s"
+												values="44;0"
+											/>
+										</path>
+										<path
+											strokeDasharray="8"
+											strokeDashoffset="8"
+											d="M14 6L18 10"
+										>
+											<animate
+												fill="freeze"
+												attributeName="stroke-dashoffset"
+												begin="1s"
+												dur="0.2s"
+												values="8;0"
+											/>
+										</path>
+									</g>
+								</svg>
+							</Button>
+							<Button
+								onClick={() => {
+									closeQuestion(question.id);
+								}}
+							>
+								{!question.answered ? 'Mark as closed' : 'Open question'}
+							</Button>
+						</>
 					)}
-
 					<article>
 						{question.answers.map(answer => {
 							return <p key={answer.id}>{answer.answerText}</p>;
@@ -134,7 +160,7 @@ export default function QuestionComponent({question}) {
 				</>
 			)}
 			<Button
-				toggleButton={true}
+				greyButton={true}
 				onClick={() => {
 					setToggle(!toggle);
 				}}

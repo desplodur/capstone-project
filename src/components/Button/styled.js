@@ -14,9 +14,10 @@ const StyledButton = styled.button`
 			  `
 			: null}
 	${props =>
-		props.toggleButton
+		props.greyButton
 			? css`
 					width: 100%;
+					padding: 0.5rem 0 0.5rem 0;
 					font-size: 1.2em;
 					border-radius: 0 0 5px 5px;
 					background-color: var(--dark);

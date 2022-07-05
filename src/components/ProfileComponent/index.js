@@ -26,7 +26,7 @@ export default function ProfileComponent() {
 	return (
 		<StyledProfile>
 			<label>
-				<Button toggleButton={true} onClick={changeActiveUser}>
+				<Button greyButton={true} onClick={changeActiveUser}>
 					Switch user
 				</Button>
 			</label>
