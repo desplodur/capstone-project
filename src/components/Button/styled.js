@@ -26,9 +26,6 @@ const StyledButton = styled.button`
 	${props =>
 		props.editButtonSmall
 			? css`
-					position: absolute;
-					top: 20px;
-					right: 10px;
 					font-size: 0.4rem;
 			  `
 			: ''}

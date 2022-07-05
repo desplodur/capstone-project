@@ -10,6 +10,24 @@ const StyledQuestionComponent = styled.section`
 	border-radius: ${pxToRem(8)};
 	background-color: var(--blue);
 	color: var(--light);
+
+	img#statusIndicator {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	button#smallEditButton {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	button#changeStatus {
+		position: absolute;
+		top: 50px;
+		right: 10px;
+	}
 `;
 
 export default StyledQuestionComponent;

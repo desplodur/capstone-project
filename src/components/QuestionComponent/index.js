@@ -67,11 +67,12 @@ export default function QuestionComponent({question}) {
 			) : (
 				<h4>{question.questionText}</h4>
 			)}
-			{!toggle && (
+			{!toggle ? (
 				<>
 					{question.userID === activeUser.userID && (
 						<>
 							<Button
+								id="smallEditButton"
 								editButtonSmall={true}
 								onClick={() => {
 									setShowEditQuestionForm(!showEditQuestionForm);
@@ -135,11 +136,19 @@ export default function QuestionComponent({question}) {
 								</svg>
 							</Button>
 							<Button
+								id="changeStatus"
 								onClick={() => {
 									closeQuestion(question.id);
 								}}
 							>
-								{!question.answered ? 'Mark as closed' : 'Open question'}
+								<img
+									src={
+										!question.answered
+											? require('../../utils/icons/check.svg').default
+											: require('../../utils/icons/unCheck.svg').default
+									}
+									alt={!question.answered ? 'Open' : 'Closed'}
+								/>
 							</Button>
 						</>
 					)}
@@ -158,6 +167,16 @@ export default function QuestionComponent({question}) {
 						/>
 					</article>
 				</>
+			) : (
+				<img
+					id="statusIndicator"
+					src={
+						!question.answered
+							? require('../../utils/icons/statusOpen.svg').default
+							: require('../../utils/icons/statusClosed.svg').default
+					}
+					alt={!question.answered ? 'Open' : 'Closed'}
+				/>
 			)}
 			<Button
 				greyButton={true}
