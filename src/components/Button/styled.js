@@ -17,8 +17,8 @@ const StyledButton = styled.button`
 		props.greyButton
 			? css`
 					width: 100%;
-					padding: 0.5rem 0 0.5rem 0;
-					font-size: 1.2em;
+					padding: 0.5em 0 0.5em 0;
+					font-size: 1.2rem;
 					border-radius: 0 0 5px 5px;
 					background-color: var(--dark);
 			  `
