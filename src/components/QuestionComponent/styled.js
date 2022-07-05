@@ -16,6 +16,12 @@ const StyledQuestionComponent = styled.section`
 		top: 5px;
 		right: 5px;
 	}
+
+	Button#smallEditButton {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
 `;
 
 export default StyledQuestionComponent;

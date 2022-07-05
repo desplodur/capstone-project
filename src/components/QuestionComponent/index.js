@@ -72,6 +72,7 @@ export default function QuestionComponent({question}) {
 					{question.userID === activeUser.userID && (
 						<>
 							<Button
+								id="smallEditButton"
 								editButtonSmall={true}
 								onClick={() => {
 									setShowEditQuestionForm(!showEditQuestionForm);
