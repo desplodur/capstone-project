@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet';
 
 import Button from '../components/Button';
 import Layout from '../components/Layout';
-import QuestionComponent from '../components/QuestionComponent';
+import QuestionComponent from '../components/QuestionCard';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
