@@ -17,13 +17,13 @@ const StyledQuestionComponent = styled.section`
 		right: 5px;
 	}
 
-	Button#smallEditButton {
+	button#smallEditButton {
 		position: absolute;
 		top: 10px;
 		right: 10px;
 	}
 
-	Button#changeStatus {
+	button#changeStatus {
 		position: absolute;
 		top: 50px;
 		right: 10px;
