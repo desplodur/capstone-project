@@ -11,7 +11,7 @@ const StyledQuestionComponent = styled.section`
 	background-color: var(--blue);
 	color: var(--light);
 
-	img {
+	img#statusIndicator {
 		position: absolute;
 		top: 5px;
 		right: 5px;
@@ -23,9 +23,10 @@ const StyledQuestionComponent = styled.section`
 		right: 10px;
 	}
 
-	Button#closeButton {
-		background-color: var(--dark);
-		border-radius: 5px;
+	Button#changeStatus {
+		position: absolute;
+		top: 50px;
+		right: 10px;
 	}
 `;
 
