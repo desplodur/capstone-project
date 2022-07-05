@@ -10,6 +10,12 @@ const StyledQuestionComponent = styled.section`
 	border-radius: ${pxToRem(8)};
 	background-color: var(--blue);
 	color: var(--light);
+
+	img {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
 `;
 
 export default StyledQuestionComponent;
