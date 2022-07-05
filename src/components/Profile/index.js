@@ -30,80 +30,82 @@ export default function ProfileComponent() {
 					Switch user
 				</Button>
 			</label>
-
-			{toggle ? (
-				<h1>{'Username: ' + activeUser.userName}</h1>
-			) : (
-				<Form
-					onSubmit={event => {
+			<article id="userInformation">
+				{toggle ? (
+					<h1>{'Username: ' + activeUser.userName}</h1>
+				) : (
+					<Form
+						onSubmit={event => {
+							setToggle(!toggle);
+							setOpen(!open);
+							setTimeout(() => {
+								setOpen(false);
+							}, 1000);
+						}}
+						placeholderText={activeUser.userName}
+						submitButtonText={'Change your Username'}
+					/>
+				)}
+				<Dialog open={open}>
+					<h3>Username changed</h3>
+				</Dialog>
+				<Button
+					id="bigEditButton"
+					editButtonBig={true}
+					onClick={() => {
 						setToggle(!toggle);
-						setOpen(!open);
-						setTimeout(() => {
-							setOpen(false);
-						}, 1000);
 					}}
-					placeholderText={activeUser.userName}
-					submitButtonText={'Change your Username'}
-				/>
-			)}
-			<Dialog open={open}>
-				<h3>Username changed</h3>
-			</Dialog>
-			<Button
-				editButtonBig={true}
-				onClick={() => {
-					setToggle(!toggle);
-				}}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					aria-hidden="true"
-					role="img"
-					width="4em"
-					height="4em"
-					preserveAspectRatio="xMidYMid meet"
-					viewBox="0 0 24 24"
 				>
-					<g
-						fill="none"
-						stroke="currentColor"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="2"
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+						role="img"
+						width="4em"
+						height="4em"
+						preserveAspectRatio="xMidYMid meet"
+						viewBox="0 0 24 24"
 					>
-						<path strokeDasharray="20" strokeDashoffset="20" d="M3 21H21">
-							<animate
-								fill="freeze"
-								attributeName="stroke-dashoffset"
-								dur="0.3s"
-								values="20;0"
-							/>
-						</path>
-						<path
-							strokeDasharray="44"
-							strokeDashoffset="44"
-							d="M7 17V13L17 3L21 7L11 17H7"
+						<g
+							fill="none"
+							stroke="currentColor"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
 						>
-							<animate
-								fill="freeze"
-								attributeName="stroke-dashoffset"
-								begin="0.4s"
-								dur="0.6s"
-								values="44;0"
-							/>
-						</path>
-						<path strokeDasharray="8" strokeDashoffset="8" d="M14 6L18 10">
-							<animate
-								fill="freeze"
-								attributeName="stroke-dashoffset"
-								begin="1s"
-								dur="0.2s"
-								values="8;0"
-							/>
-						</path>
-					</g>
-				</svg>
-			</Button>
+							<path strokeDasharray="20" strokeDashoffset="20" d="M3 21H21">
+								<animate
+									fill="freeze"
+									attributeName="stroke-dashoffset"
+									dur="0.3s"
+									values="20;0"
+								/>
+							</path>
+							<path
+								strokeDasharray="44"
+								strokeDashoffset="44"
+								d="M7 17V13L17 3L21 7L11 17H7"
+							>
+								<animate
+									fill="freeze"
+									attributeName="stroke-dashoffset"
+									begin="0.4s"
+									dur="0.6s"
+									values="44;0"
+								/>
+							</path>
+							<path strokeDasharray="8" strokeDashoffset="8" d="M14 6L18 10">
+								<animate
+									fill="freeze"
+									attributeName="stroke-dashoffset"
+									begin="1s"
+									dur="0.2s"
+									values="8;0"
+								/>
+							</path>
+						</g>
+					</svg>
+				</Button>
+			</article>
 		</StyledProfile>
 	);
 }
