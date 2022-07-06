@@ -26,8 +26,6 @@ export const useStore = create(
 						}
 						return question;
 					});
-					console.log(newQuestions);
-					console.log(state.answers);
 					return {
 						answers: [newAnswer, ...state.answers],
 						questions: newQuestions,
@@ -39,6 +37,17 @@ export const useStore = create(
 					return {
 						questions: [newQuestion, ...state.questions],
 					};
+				});
+			},
+			changeUsername: (activeUserID, newUserName) => {
+				set(state => {
+					state.users.map(user => {
+						console.log(user.userID);
+						if (user.userID === activeUserID) {
+							return (user.userName = newUserName);
+						}
+						return null;
+					});
 				});
 			},
 			setActiveUser: newActiveUser => {

@@ -11,6 +11,7 @@ export default function ProfileComponent() {
 	const users = useStore(state => state.users);
 	const activeUser = useStore(state => state.activeUser);
 	const setActiveUser = useStore(state => state.setActiveUser);
+	const changeUsername = useStore(state => state.changeUsername);
 	const [toggle, setToggle] = useState(true);
 	const [open, setOpen] = useState(false);
 
@@ -22,6 +23,11 @@ export default function ProfileComponent() {
 			return user;
 		});
 	}
+	const setNewUsername = event => {
+		event.preventDefault();
+		changeUsername(activeUser.userID, event.target.inputField.value);
+		event.target.reset();
+	};
 
 	return (
 		<StyledProfile>
@@ -36,6 +42,7 @@ export default function ProfileComponent() {
 				) : (
 					<Form
 						onSubmit={event => {
+							setNewUsername(event);
 							setToggle(!toggle);
 							setOpen(!open);
 							setTimeout(() => {
