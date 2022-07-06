@@ -36,7 +36,6 @@ export default function QuestionComponent({question}) {
 		setQuestions(newQuestions);
 		event.target.reset();
 	};
-	//complete
 	const closeQuestion = id => {
 		const newQuestions = questions.map(question => {
 			if (id === question.id) {
@@ -46,7 +45,6 @@ export default function QuestionComponent({question}) {
 		});
 		setQuestions(newQuestions);
 	};
-
 	return (
 		<StyledQuestionComponent>
 			{showEditQuestionForm ? (
