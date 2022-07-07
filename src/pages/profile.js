@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet';
 
 import Layout from '../components/Layout';
-import ProfileComponent from '../components/ProfileComponent';
+import ProfileComponent from '../components/Profile';
 
 export default function ProfilePage() {
 	return (

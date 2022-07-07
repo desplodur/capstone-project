@@ -11,26 +11,20 @@ export default function QuestionComponent({question}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions);
+	const answers = useStore(state => state.answers);
 	const setQuestions = useStore(state => state.setQuestions);
+	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
 
 	const addAnswer = (event, id) => {
 		event.preventDefault();
-		const newQuestions = questions.map(question => {
-			if (id === question.id) {
-				const newAnswer = {
-					id: nanoid(),
-					answerText: event.target.inputField.value,
-					answers: [],
-				};
-				question.answers = [...question.answers, newAnswer];
-			}
-			return question;
-		});
-		setQuestions(newQuestions);
+		const newAnswer = {
+			id: nanoid(),
+			answerText: event.target.inputField.value,
+		};
+		addNewAnswer(id, newAnswer);
 		event.target.reset();
 	};
-
 	const editQuestion = (event, id) => {
 		event.preventDefault();
 		const newQuestions = questions.map(question => {
@@ -42,7 +36,6 @@ export default function QuestionComponent({question}) {
 		setQuestions(newQuestions);
 		event.target.reset();
 	};
-
 	const closeQuestion = id => {
 		const newQuestions = questions.map(question => {
 			if (id === question.id) {
@@ -52,7 +45,6 @@ export default function QuestionComponent({question}) {
 		});
 		setQuestions(newQuestions);
 	};
-
 	return (
 		<StyledQuestionComponent>
 			{showEditQuestionForm ? (
@@ -153,8 +145,11 @@ export default function QuestionComponent({question}) {
 						</>
 					)}
 					<article>
-						{question.answers.map(answer => {
-							return <p key={answer.id}>{answer.answerText}</p>;
+						{answers.map(answer => {
+							if (question.answers.find(element => element === answer.id)) {
+								return <p key={answer.id}>{answer.answerText}</p>;
+							}
+							return null;
 						})}
 					</article>
 					<article>
