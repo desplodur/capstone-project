@@ -8,8 +8,11 @@ import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
 	const questions = useStore(state => state.questions);
+	const activeUser = useStore(state => state.activeUser);
 	const [filter, setFilter] = useState(false);
 
+	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	console.log(questions);
 	return (
 		<Layout>
 			<Helmet>
@@ -26,11 +29,11 @@ export default function QuestionPage() {
 					setFilter(!filter);
 				}}
 			>
-				{!filter ? `Show Closed` : `Show Open`}
+				{filter ? `Show All Questions` : `Show My Questions`}
 			</Button>
 			<article>
 				{questions.map(question => {
-					if (question.answered === filter) {
+					if (filter ? question.userID === activeUser.userID : true) {
 						return <QuestionComponent key={question.id} question={question} />;
 					}
 					return null;
