@@ -2,6 +2,7 @@ import create from 'zustand';
 import {persist} from 'zustand/middleware';
 
 import dataBase from '../utils/dataBase';
+import useFetch from '../hooks/useFetch';
 
 export const useStore = create(
 	persist(
