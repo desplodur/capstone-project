@@ -19,10 +19,14 @@ const StyledButton = styled.button`
 					width: 100%;
 					padding: 0.5em 0 0.5em 0;
 					font-size: 1.2rem;
-					border-radius: 0 0 5px 5px;
+					border-radius: 0 0 8px 8px;
 					background-color: var(--dark);
+					:hover {
+						background-color: var(--darktHover);
+					}
 			  `
 			: null}
+	
 	${props =>
 		props.editButtonSmall
 			? css`

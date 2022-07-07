@@ -12,7 +12,7 @@ export default function QuestionPage() {
 	const [filter, setFilter] = useState(false);
 
 	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
-	console.log(questions);
+
 	return (
 		<Layout>
 			<Helmet>
@@ -23,6 +23,7 @@ export default function QuestionPage() {
 					content="Here you can see all the Questions"
 				/>
 			</Helmet>
+
 			<Button
 				greyButton={true}
 				onClick={() => {
@@ -34,7 +35,13 @@ export default function QuestionPage() {
 			<article>
 				{questions.map(question => {
 					if (filter ? question.userID === activeUser.userID : true) {
-						return <QuestionComponent key={question.id} question={question} />;
+						return (
+							<QuestionComponent
+								key={question.id}
+								ownedQuestion={question.userID === activeUser.userID ? true : false}
+								question={question}
+							/>
+						);
 					}
 					return null;
 				})}
