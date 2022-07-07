@@ -146,8 +146,7 @@ export default function QuestionComponent({question}) {
 					)}
 					<article>
 						{answers.map(answer => {
-							if (question.answers.find(Element => Element === answer.id)) {
-								console.log(answer);
+							if (question.answers.find(element => element === answer.id)) {
 								return <p key={answer.id}>{answer.answerText}</p>;
 							}
 							return null;

@@ -5,7 +5,7 @@ import StyledNavBar from './styled';
 export default function NavBar() {
 	return (
 		<StyledNavBar>
-			<Link to="/questions">
+			<Link to="/questions" aria-label="Go to Questionspage">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -21,7 +21,7 @@ export default function NavBar() {
 					/>
 				</svg>
 			</Link>
-			<Link to="/">
+			<Link to="/" aria-label="Go to Homepage">
 				<svg
 					width="51"
 					height="51"
@@ -41,7 +41,7 @@ export default function NavBar() {
 					<line x1="36" y1="25.5" x2="15" y2="25.5" stroke="black" />
 				</svg>
 			</Link>
-			<Link to="/profile">
+			<Link to="/profile" aria-label="Go to Profilepage">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"

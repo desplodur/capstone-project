@@ -16,16 +16,22 @@ export default function ProfileComponent() {
 	const [open, setOpen] = useState(false);
 
 	function changeActiveUser() {
-		users.map(user => {
+		users.forEach(user => {
 			if (user !== activeUser) {
 				setActiveUser(user);
 			}
-			return user;
 		});
 	}
-	const setNewUsername = event => {
+
+	const handleSubmit = event => {
 		event.preventDefault();
 		changeUsername(activeUser.userID, event.target.inputField.value);
+		setToggle(!toggle);
+		setOpen(!open);
+		setTimeout(() => {
+			setOpen(false);
+		}, 1000);
+
 		event.target.reset();
 	};
 
@@ -36,19 +42,12 @@ export default function ProfileComponent() {
 					Switch user
 				</Button>
 			</label>
-			<article id="userInformation">
+			<article>
 				{toggle ? (
 					<h1>{'Username: ' + activeUser.userName}</h1>
 				) : (
 					<Form
-						onSubmit={event => {
-							setNewUsername(event);
-							setToggle(!toggle);
-							setOpen(!open);
-							setTimeout(() => {
-								setOpen(false);
-							}, 1000);
-						}}
+						onSubmit={handleSubmit}
 						placeholderText={activeUser.userName}
 						submitButtonText={'Change your Username'}
 					/>
@@ -57,7 +56,6 @@ export default function ProfileComponent() {
 					<h3>Username changed</h3>
 				</Dialog>
 				<Button
-					id="bigEditButton"
 					editButtonBig={true}
 					onClick={() => {
 						setToggle(!toggle);
