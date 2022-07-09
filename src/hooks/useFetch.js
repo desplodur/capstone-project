@@ -1,36 +1,38 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
+//import {useEffect, useState} from 'react';
+import create from 'zustand';
 
-export default function useFetch(url) {
-	const [state, setState] = useState({
-		data: null,
+export const useStore1 = create(set => ({
+	questions: {
 		loading: false,
 		error: null,
-	});
-
-	useEffect(() => {
-		setState(({data}) => ({
-			data,
-			error: null,
-			loading: true,
-		}));
-		axios
-			.get(url)
-			.then(({data}) => {
-				setState({
-					error: null,
-					data,
-					loading: false,
+		data: null,
+	},
+	answers: {
+		loading: false,
+		error: null,
+		data: null,
+	},
+	users: {
+		loading: false,
+		error: null,
+		data: null,
+	},
+	fetchData() {
+		fetch('../../api')
+			.then(response => response.json())
+			.then(data => {
+				set({
+					questions: {loading: false, error: null, data},
+					answers: {loading: false, error: null, data},
+					users: {loading: false, error: null, data},
 				});
 			})
 			.catch(error => {
-				setState(({data}) => ({
-					data,
-					error,
-					loading: false,
+				set(state => ({
+					questions: {loading: false, error: error, data: state.questions.data},
+					answers: {loading: false, error: error, data: state.answers.data},
+					users: {loading: false, error: error, data: state.users.data},
 				}));
 			});
-	}, [url]);
-
-	return state;
-}
+	},
+}));
