@@ -1,7 +1,7 @@
 //import {useEffect, useState} from 'react';
 import create from 'zustand';
 
-export const useStore1 = create(set => ({
+export const useStore = create(set => ({
 	questions: {
 		loading: false,
 		error: null,

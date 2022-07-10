@@ -1,20 +1,55 @@
 import create from 'zustand';
 import {persist} from 'zustand/middleware';
 
-import dataBase from '../utils/dataBase';
-
 export const useStore = create(
 	persist(
 		set => ({
-			questions: [...dataBase.questions],
-			answers: [...dataBase.answers],
-			users: [...dataBase.users],
-			activeUser: dataBase.users[0],
+			questions: {
+				loading: false,
+				error: null,
+				data: [],
+			},
+			answers: {
+				loading: false,
+				error: null,
+				data: [],
+			},
+			users: {
+				loading: false,
+				error: null,
+				data: [],
+			},
+			activeUser: {
+				userID: '123412',
+				userName: 'Laurenz',
+			},
+			fetchData() {
+				fetch('../../api')
+					.then(response => response.json())
+					.then(data => {
+						set({
+							questions: {loading: false, error: null, data: data.questions},
+							answers: {loading: false, error: null, data: data.answers},
+							users: {loading: false, error: null, data: data.users},
+						});
+					})
+					.catch(error => {
+						set(state => ({
+							questions: {loading: false, error: error, data: state.questions.data},
+							answers: {loading: false, error: error, data: state.answers.data},
+							users: {loading: false, error: error, data: state.users.data},
+						}));
+					});
+			},
 
 			setQuestions: newQuestions => {
 				set(() => {
 					return {
-						questions: newQuestions,
+						questions: {
+							loading: false,
+							error: null,
+							data: newQuestions,
+						},
 					};
 				});
 			},
@@ -35,7 +70,11 @@ export const useStore = create(
 			addNewQuestion: newQuestion => {
 				set(state => {
 					return {
-						questions: [newQuestion, ...state.questions],
+						questions: {
+							loading: false,
+							error: null,
+							data: [newQuestion, ...state.questions.data],
+						},
 					};
 				});
 			},

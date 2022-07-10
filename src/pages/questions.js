@@ -4,15 +4,13 @@ import {Helmet} from 'react-helmet';
 import Button from '../components/Button';
 import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionCard';
-import {useStore1} from '../hooks/useFetch';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
 	const questions = useStore(state => state.questions);
 	const activeUser = useStore(state => state.activeUser);
 	const [filter, setFilter] = useState(false);
-
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	questions.data.sort((a, b) => Number(a.answered) - Number(b.answered));
 
 	return (
 		<Layout>
@@ -34,7 +32,7 @@ export default function QuestionPage() {
 				{filter ? `Show All Questions` : `Show My Questions`}
 			</Button>
 			<article>
-				{questions.map(question => {
+				{questions.data.map(question => {
 					if (filter ? question.userID === activeUser.userID : true) {
 						return (
 							<QuestionComponent
@@ -56,10 +54,10 @@ function Data({data}) {
 }
 
 function Test() {
-	const questions = useStore1(state => state.questions);
-	const answers = useStore1(state => state.answers);
-	const users = useStore1(state => state.users);
-	const fetchData = useStore1(state => state.fetchData);
+	const questions = useStore(state => state.questions);
+	const answers = useStore(state => state.answers);
+	const users = useStore(state => state.users);
+	const fetchData = useStore(state => state.fetchData);
 
 	return (
 		<>
