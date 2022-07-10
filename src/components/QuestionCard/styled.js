@@ -28,12 +28,11 @@ const StyledQuestionComponent = styled.section`
 	}
 
 	${props =>
-		props.ownedQuestion
-			? css`
-					background-color: var(--lightblue);
-					color: var(--dark);
-			  `
-			: null}
+		props.ownedQuestion &&
+		css`
+			background-color: var(--lightblue);
+			color: var(--dark);
+		`}
 `;
 
 export default StyledQuestionComponent;
