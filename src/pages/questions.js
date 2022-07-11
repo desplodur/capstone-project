@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Button from '../components/Button';
@@ -9,10 +9,15 @@ import {useStore} from '../hooks/useStore';
 export default function QuestionPage() {
 	const questions = useStore(state => state.questions);
 	const activeUser = useStore(state => state.activeUser);
+	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
-	console.log(questions);
+
+	useEffect(() => {
+		fetchData();
+	}),
+		[];
+
 	questions.data.sort((a, b) => Number(a.answered) - Number(b.answered));
-	console.log(questions);
 	const filteredQuestions = filter
 		? questions.data.filter(question => question.userID === activeUser.userID)
 		: questions;
@@ -27,7 +32,6 @@ export default function QuestionPage() {
 					content="Here you can see all the Questions"
 				/>
 			</Helmet>
-			<Test />
 			<Button
 				greyButton={true}
 				onClick={() => {
@@ -48,29 +52,5 @@ export default function QuestionPage() {
 				})}
 			</article>
 		</Layout>
-	);
-}
-
-function Data({data}) {
-	return <pre>{JSON.stringify(data, null, 4)}</pre>;
-}
-
-function Test() {
-	const questions = useStore(state => state.questions);
-	const answers = useStore(state => state.answers);
-	const users = useStore(state => state.users);
-	const fetchData = useStore(state => state.fetchData);
-
-	return (
-		<>
-			<button
-				type="button"
-				onClick={() => {
-					fetchData();
-				}}
-			>
-				Fetch Data
-			</button>
-		</>
 	);
 }

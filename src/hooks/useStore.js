@@ -86,7 +86,6 @@ export const useStore = create(
 			changeUsername: (activeUserID, newUserName) => {
 				set(state => {
 					state.users.map(user => {
-						console.log(user.userID);
 						if (user.userID === activeUserID) {
 							return (user.userName = newUserName);
 						}
