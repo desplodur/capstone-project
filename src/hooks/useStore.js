@@ -23,7 +23,7 @@ export const useStore = create(
 				userID: '123412',
 				userName: 'Laurenz',
 			},
-			fetchData() {
+			fetchData: () => {
 				fetch('../../api')
 					.then(response => response.json())
 					.then(data => {
@@ -40,6 +40,21 @@ export const useStore = create(
 							users: {loading: false, error: error, data: state.users.data},
 						}));
 					});
+			},
+
+			addNewQuestion: newQuestion => {
+				fetch('../../api', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(newQuestion),
+				}).catch(error => {
+					set({
+						data: '',
+						error: error.message,
+					});
+				});
 			},
 
 			setQuestions: newQuestions => {
@@ -67,17 +82,7 @@ export const useStore = create(
 					};
 				});
 			},
-			addNewQuestion: newQuestion => {
-				set(state => {
-					return {
-						questions: {
-							loading: false,
-							error: null,
-							data: [newQuestion, ...state.questions.data],
-						},
-					};
-				});
-			},
+
 			changeUsername: (activeUserID, newUserName) => {
 				set(state => {
 					state.users.map(user => {

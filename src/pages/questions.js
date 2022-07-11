@@ -10,10 +10,11 @@ export default function QuestionPage() {
 	const questions = useStore(state => state.questions);
 	const activeUser = useStore(state => state.activeUser);
 	const [filter, setFilter] = useState(false);
-
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	console.log(questions);
+	questions.data.sort((a, b) => Number(a.answered) - Number(b.answered));
+	console.log(questions);
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser.userID)
+		? questions.data.filter(question => question.userID === activeUser.userID)
 		: questions;
 
 	return (
@@ -36,7 +37,7 @@ export default function QuestionPage() {
 				{filter ? `Show All Questions` : `Show My Questions`}
 			</Button>
 			<article>
-				{filteredQuestions.map(question => {
+				{filteredQuestions.data.map(question => {
 					return (
 						<QuestionComponent
 							key={question.id}
@@ -70,13 +71,6 @@ function Test() {
 			>
 				Fetch Data
 			</button>
-
-			{questions.error && <div>Questions: {questions.error.message}</div>}
-			{answers.error && <div>Answers: {answers.error.message}</div>}
-			{users.error && <div>Users: {users.error.message}</div>}
-			<Data data={questions} />
-			<Data data={answers} />
-			<Data data={users} />
 		</>
 	);
 }

@@ -15,7 +15,6 @@ export default function QuestionComponent({question, ...props}) {
 	const setQuestions = useStore(state => state.setQuestions);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
-
 	const addAnswer = (event, id) => {
 		event.preventDefault();
 		const newAnswer = {
@@ -146,7 +145,7 @@ export default function QuestionComponent({question, ...props}) {
 						</>
 					)}
 					<article>
-						{answers.map(answer => {
+						{answers.data.map(answer => {
 							if (question.answers.find(element => element === answer.id)) {
 								return <p key={answer.id}>{answer.answerText}</p>;
 							}
