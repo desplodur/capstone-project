@@ -21,7 +21,7 @@ export default function QuestionPage() {
 
 	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser.userID)
+		? questions.filter(question => question.userID === activeUser._id)
 		: questions;
 
 	return (
@@ -52,8 +52,8 @@ export default function QuestionPage() {
 				{filteredQuestions.map(question => {
 					return (
 						<QuestionComponent
-							key={question.id}
-							ownedQuestion={question.userID === activeUser.userID ? true : false}
+							key={question._id}
+							ownedQuestion={question.userID === activeUser._id ? true : false}
 							question={question}
 						/>
 					);

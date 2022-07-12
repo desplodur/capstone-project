@@ -16,7 +16,7 @@ export default function HomePage() {
 		const newQuestion = {
 			questionText: event.target.inputField.value,
 			answers: [],
-			userID: activeUser.userID,
+			userID: activeUser._id,
 			answered: false,
 		};
 		addNewQuestion(newQuestion);

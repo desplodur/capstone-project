@@ -34,6 +34,7 @@ export default function QuestionComponent({question, ...props}) {
 	const closeQuestion = () => {
 		const newQuestion = question;
 		newQuestion.answered = !question.answered;
+		console.log(newQuestion.answered);
 		setQuestion(question._id, newQuestion);
 	};
 
@@ -53,7 +54,7 @@ export default function QuestionComponent({question, ...props}) {
 			)}
 			{!toggle ? (
 				<>
-					{question.userID === activeUser.userID && (
+					{question.userID === activeUser._id && (
 						<>
 							<Button
 								id="smallEditButton"
@@ -140,7 +141,7 @@ export default function QuestionComponent({question, ...props}) {
 					<article>
 						{answers.map(answer => {
 							if (question._id === answer.questionID) {
-								return <p key={answer.id}>{answer.answerText}</p>;
+								return <p key={answer._id}>{answer.answerText}</p>;
 							}
 							return null;
 						})}

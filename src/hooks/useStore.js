@@ -19,10 +19,8 @@ export const useStore = create(
 				error: null,
 				data: [],
 			},
-			activeUser: {
-				_id: '123412',
-				userName: 'Laurenz',
-			},
+			activeUser: {_id: '62cd8668823139d893144b3c', userName: 'Michael'},
+
 			fetchData: () => {
 				fetch('../../api')
 					.then(response => response.json())
@@ -95,36 +93,32 @@ export const useStore = create(
 						error: error.message,
 					});
 				});
-			},
-
-			/****/
-
-			/*
-			addNewAnswer: (questionID, newAnswer) => {
 				set(state => {
-					const newQuestions = state.questions.map(question => {
-						if (question.id === questionID) {
-							question.answers = [...question.answers, newAnswer.id];
-						}
-						return question;
-					});
-					return {
-						answers: [newAnswer, ...state.answers],
-						questions: newQuestions,
-					};
-				});
-			},*/
-
-			changeUsername: (activeUserID, newUserName) => {
-				set(state => {
-					state.users.map(user => {
-						if (user._id === activeUserID) {
-							return (user.userName = newUserName);
+					state.questions.data.map(question => {
+						if (question._id === questionID) {
+							return {
+								questions: {data: newQuestion},
+							};
 						}
 						return null;
 					});
 				});
 			},
+			changeUsername: (activeUserID, newUser) => {
+				fetch(`../../api/users/${activeUserID}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(newUser),
+				}).catch(error => {
+					set({
+						data: '',
+						error: error.message,
+					});
+				});
+			},
+
 			setActiveUser: newActiveUser => {
 				set(() => {
 					return {
