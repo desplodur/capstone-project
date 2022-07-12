@@ -14,7 +14,14 @@ export default async function handler(request, response) {
 	if (request.method === 'POST') {
 		const newQuestion = new Question(request.body);
 		await newQuestion.save();
-		return response.status(201).json({data: newQuestion});
+		return response.status(201).json({newQuestion});
 	}
+	if (request.method === 'UPDATE') {
+		const updatedQuestion = await Question.findByIdAndUpdate(request.body.id, {
+			$set: request.body,
+		});
+		return response.status(200).json({updatedQuestion});
+	}
+
 	return response.status(403).json({message: 'Error: request method not allowed.'});
 }

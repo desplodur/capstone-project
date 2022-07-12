@@ -10,8 +10,8 @@ import StyledQuestionComponent from './styled';
 export default function QuestionComponent({question, ...props}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const questions = useStore(state => state.questions);
-	const answers = useStore(state => state.answers);
+	const questions = useStore(state => state.questions.data);
+	const answers = useStore(state => state.answers.data);
 	const setQuestions = useStore(state => state.setQuestions);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
@@ -145,7 +145,7 @@ export default function QuestionComponent({question, ...props}) {
 						</>
 					)}
 					<article>
-						{answers.data.map(answer => {
+						{answers.map(answer => {
 							if (question.answers.find(element => element === answer.id)) {
 								return <p key={answer.id}>{answer.answerText}</p>;
 							}

@@ -7,19 +7,21 @@ import QuestionComponent from '../components/QuestionCard';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
-	const questions = useStore(state => state.questions);
+	const questions = useStore(state => state.questions.data);
 	const activeUser = useStore(state => state.activeUser);
 	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
 
 	useEffect(() => {
-		fetchData();
-	}),
-		[];
+		const intervalId = setInterval(() => {
+			fetchData();
+		}, 2000);
+		return () => clearInterval(intervalId);
+	});
 
-	questions.data.sort((a, b) => Number(a.answered) - Number(b.answered));
+	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.data.filter(question => question.userID === activeUser.userID)
+		? questions.filter(question => question.userID === activeUser.userID)
 		: questions;
 
 	return (
@@ -47,7 +49,7 @@ export default function QuestionPage() {
 				</svg>
 			</Button>
 			<article>
-				{filteredQuestions.data.map(question => {
+				{filteredQuestions.map(question => {
 					return (
 						<QuestionComponent
 							key={question.id}

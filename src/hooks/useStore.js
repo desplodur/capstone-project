@@ -5,17 +5,17 @@ export const useStore = create(
 	persist(
 		set => ({
 			questions: {
-				loading: false,
+				loading: true,
 				error: null,
 				data: [],
 			},
 			answers: {
-				loading: false,
+				loading: true,
 				error: null,
 				data: [],
 			},
 			users: {
-				loading: false,
+				loading: true,
 				error: null,
 				data: [],
 			},
@@ -49,6 +49,20 @@ export const useStore = create(
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify(newQuestion),
+				}).catch(error => {
+					set({
+						data: '',
+						error: error.message,
+					});
+				});
+			},
+			updateQuestion: updatedQuestion => {
+				fetch('../../api', {
+					method: 'UPDATE',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(updatedQuestion),
 				}).catch(error => {
 					set({
 						data: '',
