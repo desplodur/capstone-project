@@ -3,7 +3,6 @@ const {Schema, model} = mongoose;
 
 const schema = new Schema({
 	questionText: String,
-	answers: [String],
 	userID: String,
 	answered: Boolean,
 });

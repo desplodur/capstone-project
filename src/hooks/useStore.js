@@ -56,8 +56,7 @@ export const useStore = create(
 					});
 				});
 			},
-			addNewAnswer: (questionID, newAnswer) => {
-				console.log(questionID);
+			addNewAnswer: newAnswer => {
 				fetch('../../api/answers', {
 					method: 'POST',
 					headers: {
@@ -70,19 +69,22 @@ export const useStore = create(
 						error: error.message,
 					});
 				});
-				fetch(`../../api/questions/${questionID}`, {
+			},
+
+			/***fetch(`../../api/questions/${questionID}`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify(newAnswer),
+					body: JSON.stringify('tes33t'),
 				}).catch(error => {
 					set({
 						data: '',
 						error: error.message,
 					});
-				});
-			} /*
+				}); */
+
+			/*
 			addNewAnswer: (questionID, newAnswer) => {
 				set(state => {
 					const newQuestions = state.questions.map(question => {
@@ -96,9 +98,7 @@ export const useStore = create(
 						questions: newQuestions,
 					};
 				});
-			},*/,
-
-			setQuestions: newQuestions => {
+			},*/ setQuestions: newQuestions => {
 				set(() => {
 					return {
 						questions: {

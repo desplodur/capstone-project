@@ -15,7 +15,7 @@ export default function QuestionPage() {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			fetchData();
-		}, 2000);
+		}, 1000);
 		return () => clearInterval(intervalId);
 	});
 

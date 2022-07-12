@@ -1,4 +1,3 @@
-import {nanoid} from 'nanoid';
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
@@ -20,8 +19,9 @@ export default function QuestionComponent({question, ...props}) {
 		event.preventDefault();
 		const newAnswer = {
 			answerText: event.target.inputField.value,
+			questionID: question._id,
 		};
-		addNewAnswer(question._id, newAnswer);
+		addNewAnswer(newAnswer);
 		event.target.reset();
 	};
 
@@ -147,7 +147,7 @@ export default function QuestionComponent({question, ...props}) {
 					)}
 					<article>
 						{answers.map(answer => {
-							if (question.answers.find(element => element === answer.id)) {
+							if (question._id === answer.questionID) {
 								return <p key={answer.id}>{answer.answerText}</p>;
 							}
 							return null;
