@@ -7,7 +7,7 @@ import Form from '../Form';
 
 import StyledQuestionComponent from './styled';
 
-export default function QuestionComponent({question}) {
+export default function QuestionComponent({question, ...props}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions);
@@ -46,7 +46,7 @@ export default function QuestionComponent({question}) {
 		setQuestions(newQuestions);
 	};
 	return (
-		<StyledQuestionComponent>
+		<StyledQuestionComponent {...props}>
 			{showEditQuestionForm ? (
 				<Form
 					onSubmit={event => {
@@ -131,6 +131,7 @@ export default function QuestionComponent({question}) {
 								id="changeStatus"
 								onClick={() => {
 									closeQuestion(question.id);
+									setToggle(!toggle);
 								}}
 							>
 								<img

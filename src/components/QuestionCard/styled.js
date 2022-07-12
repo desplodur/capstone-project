@@ -1,13 +1,11 @@
-import styled from 'styled-components';
-
-import {pxToRem} from '../../utils/unit';
+import styled, {css} from 'styled-components';
 
 const StyledQuestionComponent = styled.section`
 	position: relative;
 	width: 90vw;
 	margin: 0.5em 0 0.5em 0;
-	border: 2px solid var(--dark);
-	border-radius: ${pxToRem(8)};
+	border: var(--dark);
+	border-radius: 8px;
 	background-color: var(--blue);
 	color: var(--light);
 
@@ -28,6 +26,13 @@ const StyledQuestionComponent = styled.section`
 		top: 50px;
 		right: 10px;
 	}
+
+	${props =>
+		props.ownedQuestion &&
+		css`
+			background-color: var(--lightblue);
+			color: var(--dark);
+		`}
 `;
 
 export default StyledQuestionComponent;
