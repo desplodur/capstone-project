@@ -9,7 +9,6 @@ import StyledQuestionComponent from './styled';
 export default function QuestionComponent({question, ...props}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const questions = useStore(state => state.questions.data);
 	const answers = useStore(state => state.answers.data);
 	const setQuestions = useStore(state => state.setQuestions);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
@@ -25,25 +24,17 @@ export default function QuestionComponent({question, ...props}) {
 		event.target.reset();
 	};
 
-	const editQuestion = (event, id) => {
+	const editQuestion = event => {
 		event.preventDefault();
-		const newQuestions = questions.map(question => {
-			if (id === question.id) {
-				question.questionText = event.target.inputField.value;
-			}
-			return question;
-		});
-		setQuestions(newQuestions);
+		const newQuestion = question;
+		newQuestion.questionText = event.target.inputField.value;
+		setQuestions(newQuestion);
 		event.target.reset();
 	};
-	const closeQuestion = id => {
-		const newQuestions = questions.map(question => {
-			if (id === question.id) {
-				question.answered = !question.answered;
-			}
-			return question;
-		});
-		setQuestions(newQuestions);
+	const closeQuestion = () => {
+		const newQuestion = question;
+		newQuestion.answered = !question.answered;
+		setQuestions(newQuestion);
 	};
 	return (
 		<StyledQuestionComponent {...props}>
