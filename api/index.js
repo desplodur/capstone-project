@@ -1,6 +1,6 @@
 import connectToMongodb from '../backend/db/connect-to-mongodb';
-import Question from '../backend/models/Question';
 import Answer from '../backend/models/Answer';
+import Question from '../backend/models/Question';
 import User from '../backend/models/User';
 
 export default async function handler(request, response) {
