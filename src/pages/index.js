@@ -1,4 +1,3 @@
-import {nanoid} from 'nanoid';
 import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
@@ -15,7 +14,6 @@ export default function HomePage() {
 	const createNewQuestion = event => {
 		event.preventDefault();
 		const newQuestion = {
-			id: nanoid(),
 			questionText: event.target.inputField.value,
 			answers: [],
 			userID: activeUser.userID,

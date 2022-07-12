@@ -15,15 +15,16 @@ export default function QuestionComponent({question, ...props}) {
 	const setQuestions = useStore(state => state.setQuestions);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
-	const addAnswer = (event, id) => {
+
+	const addAnswer = event => {
 		event.preventDefault();
 		const newAnswer = {
-			id: nanoid(),
 			answerText: event.target.inputField.value,
 		};
-		addNewAnswer(id, newAnswer);
+		addNewAnswer(question._id, newAnswer);
 		event.target.reset();
 	};
+
 	const editQuestion = (event, id) => {
 		event.preventDefault();
 		const newQuestions = questions.map(question => {
@@ -155,7 +156,7 @@ export default function QuestionComponent({question, ...props}) {
 					<article>
 						<Form
 							onSubmit={event => {
-								addAnswer(event, question.id);
+								addAnswer(event);
 							}}
 							placeholderText="Type in your answer..."
 							submitButtonText={'->'}

@@ -20,7 +20,7 @@ export const useStore = create(
 				data: [],
 			},
 			activeUser: {
-				userID: '123412',
+				_id: '123412',
 				userName: 'Laurenz',
 			},
 			fetchData: () => {
@@ -43,7 +43,7 @@ export const useStore = create(
 			},
 
 			addNewQuestion: newQuestion => {
-				fetch('../../api', {
+				fetch('../../api/questions', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -56,32 +56,33 @@ export const useStore = create(
 					});
 				});
 			},
-			updateQuestion: updatedQuestion => {
-				fetch('../../api', {
-					method: 'UPDATE',
+			addNewAnswer: (questionID, newAnswer) => {
+				console.log(questionID);
+				fetch('../../api/answers', {
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify(updatedQuestion),
+					body: JSON.stringify(newAnswer),
 				}).catch(error => {
 					set({
 						data: '',
 						error: error.message,
 					});
 				});
-			},
-
-			setQuestions: newQuestions => {
-				set(() => {
-					return {
-						questions: {
-							loading: false,
-							error: null,
-							data: newQuestions,
-						},
-					};
+				fetch(`../../api/questions/${questionID}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(newAnswer),
+				}).catch(error => {
+					set({
+						data: '',
+						error: error.message,
+					});
 				});
-			},
+			} /*
 			addNewAnswer: (questionID, newAnswer) => {
 				set(state => {
 					const newQuestions = state.questions.map(question => {
@@ -95,12 +96,24 @@ export const useStore = create(
 						questions: newQuestions,
 					};
 				});
+			},*/,
+
+			setQuestions: newQuestions => {
+				set(() => {
+					return {
+						questions: {
+							loading: false,
+							error: null,
+							data: newQuestions,
+						},
+					};
+				});
 			},
 
 			changeUsername: (activeUserID, newUserName) => {
 				set(state => {
 					state.users.map(user => {
-						if (user.userID === activeUserID) {
+						if (user._id === activeUserID) {
 							return (user.userName = newUserName);
 						}
 						return null;
