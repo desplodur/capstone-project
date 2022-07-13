@@ -1,3 +1,4 @@
+import {useSession} from '@pforte/react';
 import {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 
@@ -8,10 +9,10 @@ import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
 	const questions = useStore(state => state.questions.data);
-	const activeUser = useStore(state => state.activeUser);
 	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
 
+	const session = useSession();
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			fetchData();
@@ -21,7 +22,7 @@ export default function QuestionPage() {
 
 	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser._id)
+		? questions.filter(question => question.userID === session.id)
 		: questions;
 
 	return (
@@ -54,7 +55,7 @@ export default function QuestionPage() {
 					return (
 						<QuestionComponent
 							key={question._id}
-							ownedQuestion={question.userID === activeUser._id ? true : false}
+							ownedQuestion={question.userID === session.id ? true : false}
 							question={question}
 						/>
 					);
