@@ -40,4 +40,8 @@ export const GlobalStyle = createGlobalStyle`
 		bottom: 0;
 		width: 100%
 	}
+	h1,h2,h3,h4 {
+		margin:0;
+		padding:0;
+	 }
 `;
