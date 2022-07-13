@@ -1,9 +1,13 @@
+import {useNavigate} from 'react-router-dom';
+
 import Button from '../Button';
 
 import {StyledQuestionComponent} from './styled';
 import {StyledContent} from './styled';
 
-export default function QuestionComponent({question, setOpen, ...props}) {
+export default function QuestionComponent({question, ...props}) {
+	const navigate = useNavigate();
+
 	return (
 		<StyledQuestionComponent {...props}>
 			<StyledContent>
@@ -13,7 +17,7 @@ export default function QuestionComponent({question, setOpen, ...props}) {
 			<Button
 				greyButton={true}
 				onClick={() => {
-					setOpen(true);
+					navigate('/' + question._id);
 				}}
 			>
 				Go to Question

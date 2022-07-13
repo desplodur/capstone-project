@@ -1,20 +1,26 @@
 import {useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
 import Form from '../Form';
 
-import {StyledQuestionComponent} from './styled';
 import {StyledContent} from './styled';
 
-export default function QuestionComponent({question, ...props}) {
+export default function QuestionDetails() {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
+	const questions = useStore(state => state.questions.data);
 	const answers = useStore(state => state.answers.data);
 	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
+
+	//const navigate = useNavigate();
+	const {idFromUrl} = useParams();
+
+	const question = questions.find(question => question._id === idFromUrl);
 
 	const addAnswer = event => {
 		event.preventDefault();
@@ -41,7 +47,7 @@ export default function QuestionComponent({question, ...props}) {
 	};
 
 	return (
-		<StyledQuestionComponent {...props}>
+		<div>
 			<StyledContent>
 				{showEditQuestionForm ? (
 					<Form
@@ -175,7 +181,6 @@ export default function QuestionComponent({question, ...props}) {
 					/>
 				)}
 			</StyledContent>
-
 			<Button
 				greyButton={true}
 				onClick={() => {
@@ -184,6 +189,6 @@ export default function QuestionComponent({question, ...props}) {
 			>
 				{toggle ? 'Show answers' : 'Hide answers'}
 			</Button>
-		</StyledQuestionComponent>
+		</div>
 	);
 }
