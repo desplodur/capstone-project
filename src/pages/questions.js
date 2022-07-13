@@ -13,6 +13,7 @@ export default function QuestionPage() {
 	const [filter, setFilter] = useState(false);
 
 	const session = useSession();
+	console.log(session);
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			fetchData();
@@ -55,7 +56,7 @@ export default function QuestionPage() {
 					return (
 						<QuestionComponent
 							key={question._id}
-							ownedQuestion={question.userID === session.id ? true : false}
+							ownedQuestion={question.userID === session.user.id ? true : false}
 							question={question}
 						/>
 					);

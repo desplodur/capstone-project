@@ -1,3 +1,4 @@
+import {useSession} from '@pforte/react';
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
@@ -9,13 +10,15 @@ import {StyledQuestionComponent} from './styled';
 import {StyledContent} from './styled';
 
 export default function QuestionComponent({question, ...props}) {
+	const session = useSession();
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const answers = useStore(state => state.answers.data);
 	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
-
+	console.log(session);
+	return null;
 	const addAnswer = event => {
 		event.preventDefault();
 		const newAnswer = {
@@ -57,7 +60,7 @@ export default function QuestionComponent({question, ...props}) {
 				)}
 				{!toggle ? (
 					<>
-						{question.userID === activeUser._id && (
+						{question.userID === session.user.id && (
 							<>
 								<Button
 									id="smallEditButton"
