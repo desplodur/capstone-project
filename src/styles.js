@@ -32,13 +32,16 @@ export const GlobalStyle = createGlobalStyle`
 		flex-direction: column;
 		flex-wrap: nowrap;
 		align-items: center;
-		justify-content: center;		
+		justify-content: center;
+		height: auto;
+		margin-bottom: 10vh;		
 	}
 
 	footer {
 		position: fixed;
 		bottom: 0;
-		width: 100%
+		width: 100%;
+		height: 10vh;
 	}
 	h1,h2,h3,h4 {
 		margin:0;
