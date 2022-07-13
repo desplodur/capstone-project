@@ -20,6 +20,11 @@
     "toc": "npx markdown-toc@1 README.md -i"
   },
   "dependencies": {
+    "@pforte/adapter-mongoose": "^0.0.2",
+    "@pforte/client": "^0.0.2",
+    "@pforte/core": "^0.0.2",
+    "@pforte/provider-github": "^0.0.2",
+    "@pforte/react": "^0.0.2",
     "axios": "0.27.2",
     "mongoose": "^6.4.3",
     "nanoid": "3.3.4",
