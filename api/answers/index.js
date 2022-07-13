@@ -7,7 +7,7 @@ export default async function handler(request, response) {
 	if (request.method === 'POST') {
 		const newAnswer = new Answer(request.body);
 		await newAnswer.save();
-		return response.status(201).json({newAnswer});
+		return response.status(201).json(newAnswer);
 	}
 	return response.status(403).json({message: 'Error: request method does not exist.'});
 }

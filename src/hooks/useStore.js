@@ -41,47 +41,72 @@ export const useStore = create(
 			},
 
 			addNewQuestion: newQuestion => {
-				fetch('../../api/questions', {
+				set(state => {
+					return {
+						questions: {...state.questions, loading: true, error: null},
+					};
+				});
+				fetch('/api/questions', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify(newQuestion),
-				}).catch(error => {
-					set({
-						data: '',
-						error: error.message,
+				})
+					.then(data => {
+						set(state => {
+							return {
+								questions: {
+									error: null,
+									loading: false,
+									data: [...state.questions.data, data],
+								},
+							};
+						});
+					})
+					.catch(error => {
+						set(state => {
+							return {
+								questions: {
+									...state.questions,
+									loading: false,
+									error: error.message,
+								},
+							};
+						});
 					});
-				});
-				set(state => {
-					return {
-						questions: {data: [...state.questions.data, newQuestion]},
-					};
-				});
 			},
 
 			addNewAnswer: newAnswer => {
-				fetch('../../api/answers', {
+				fetch('/api/answers', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify(newAnswer),
-				}).catch(error => {
-					set({
-						data: '',
-						error: error.message,
+				})
+					.then(data => {
+						set(state => {
+							return {
+								answers: {
+									error: null,
+									loading: false,
+									data: [...state.answers.data, data],
+								},
+							};
+						});
+					})
+					.catch(error => {
+						set(state => {
+							return {
+								answers: {...state.answers, loading: false, error: error.message},
+							};
+						});
 					});
-				});
-				set(state => {
-					return {
-						answers: {data: [...state.answers.data, newAnswer]},
-					};
-				});
 			},
 
 			setQuestion: (questionID, newQuestion) => {
-				fetch(`../../api/questions/${questionID}`, {
+				fetch(`/api/questions/${questionID}`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
@@ -105,7 +130,7 @@ export const useStore = create(
 				});
 			},
 			changeUsername: (activeUserID, newUser) => {
-				fetch(`../../api/users/${activeUserID}`, {
+				fetch(`/api/users/${activeUserID}`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',

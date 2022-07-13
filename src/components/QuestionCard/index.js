@@ -175,7 +175,6 @@ export default function QuestionComponent({question, ...props}) {
 					/>
 				)}
 			</StyledContent>
-
 			<Button
 				greyButton={true}
 				onClick={() => {

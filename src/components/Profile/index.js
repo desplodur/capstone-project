@@ -1,3 +1,5 @@
+import {signOut} from '@pforte/client';
+import {useSession} from '@pforte/react';
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
@@ -14,6 +16,7 @@ export default function ProfileComponent() {
 	const changeUsername = useStore(state => state.changeUsername);
 	const [toggle, setToggle] = useState(true);
 	const [open, setOpen] = useState(false);
+	const session = useSession();
 
 	function changeActiveUser() {
 		users.forEach(user => {
@@ -40,7 +43,7 @@ export default function ProfileComponent() {
 		}, 1000);
 		event.target.reset();
 	};
-
+	console.log(session);
 	return (
 		<StyledProfile>
 			<label>
@@ -49,8 +52,9 @@ export default function ProfileComponent() {
 				</Button>
 			</label>
 			<article>
+				{session && <img src={session.user.image} alt={session.user.name} />}
 				{toggle ? (
-					<h1>{'Username: ' + activeUser.userName}</h1>
+					<h1>Username {session?.user.name ?? 'Loading...'}</h1>
 				) : (
 					<Form
 						onSubmit={handleSubmit}
@@ -116,6 +120,14 @@ export default function ProfileComponent() {
 						</g>
 					</svg>
 				</Button>
+				<button
+					type="button"
+					onClick={() => {
+						void signOut('github');
+					}}
+				>
+					Sign In with GitHub
+				</button>
 			</article>
 		</StyledProfile>
 	);

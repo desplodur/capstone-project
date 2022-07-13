@@ -1,4 +1,4 @@
-import {signIn, signOut} from '@pforte/client';
+import {signIn} from '@pforte/client';
 import {useSession} from '@pforte/react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
