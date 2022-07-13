@@ -25,7 +25,7 @@ export default function ProfileComponent() {
 			}
 		});
 	}
-
+	console.log('test');
 	const handleSubmit = event => {
 		event.preventDefault();
 		const newUser = users.find(user => {
