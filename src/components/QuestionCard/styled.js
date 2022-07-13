@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 
-const StyledQuestionComponent = styled.section`
+export const StyledQuestionComponent = styled.section`
 	position: relative;
 	width: 90vw;
 	margin: 0.5em 0 0.5em 0;
@@ -35,4 +35,6 @@ const StyledQuestionComponent = styled.section`
 		`}
 `;
 
-export default StyledQuestionComponent;
+export const StyledContent = styled.div`
+	padding: 1em 4em 1em 1em;
+`;
