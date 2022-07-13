@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Button from '../components/Button';
@@ -7,13 +7,21 @@ import QuestionComponent from '../components/QuestionCard';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
-	const questions = useStore(state => state.questions);
+	const questions = useStore(state => state.questions.data);
 	const activeUser = useStore(state => state.activeUser);
+	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			fetchData();
+		}, 1000);
+		return () => clearInterval(intervalId);
+	});
 
 	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser.userID)
+		? questions.filter(question => question.userID === activeUser._id)
 		: questions;
 
 	return (
@@ -45,8 +53,8 @@ export default function QuestionPage() {
 				{filteredQuestions.map(question => {
 					return (
 						<QuestionComponent
-							key={question.id}
-							ownedQuestion={question.userID === activeUser.userID ? true : false}
+							key={question._id}
+							ownedQuestion={question.userID === activeUser._id ? true : false}
 							question={question}
 						/>
 					);

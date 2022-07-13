@@ -1,4 +1,3 @@
-import {nanoid} from 'nanoid';
 import {useState} from 'react';
 
 import {useStore} from '../../hooks/useStore';
@@ -10,41 +9,35 @@ import StyledQuestionComponent from './styled';
 export default function QuestionComponent({question, ...props}) {
 	const [toggle, setToggle] = useState(true);
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const questions = useStore(state => state.questions);
-	const answers = useStore(state => state.answers);
-	const setQuestions = useStore(state => state.setQuestions);
+	const answers = useStore(state => state.answers.data);
+	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
 
-	const addAnswer = (event, id) => {
+	const addAnswer = event => {
 		event.preventDefault();
 		const newAnswer = {
-			id: nanoid(),
 			answerText: event.target.inputField.value,
+			questionID: question._id,
 		};
-		addNewAnswer(id, newAnswer);
+		addNewAnswer(newAnswer);
 		event.target.reset();
 	};
-	const editQuestion = (event, id) => {
+
+	const editQuestion = event => {
 		event.preventDefault();
-		const newQuestions = questions.map(question => {
-			if (id === question.id) {
-				question.questionText = event.target.inputField.value;
-			}
-			return question;
-		});
-		setQuestions(newQuestions);
+		const newQuestion = question;
+		newQuestion.questionText = event.target.inputField.value;
+		setQuestion(question._id, newQuestion);
 		event.target.reset();
 	};
-	const closeQuestion = id => {
-		const newQuestions = questions.map(question => {
-			if (id === question.id) {
-				question.answered = !question.answered;
-			}
-			return question;
-		});
-		setQuestions(newQuestions);
+	const closeQuestion = () => {
+		const newQuestion = question;
+		newQuestion.answered = !question.answered;
+		console.log(newQuestion.answered);
+		setQuestion(question._id, newQuestion);
 	};
+
 	return (
 		<StyledQuestionComponent {...props}>
 			{showEditQuestionForm ? (
@@ -61,7 +54,7 @@ export default function QuestionComponent({question, ...props}) {
 			)}
 			{!toggle ? (
 				<>
-					{question.userID === activeUser.userID && (
+					{question.userID === activeUser._id && (
 						<>
 							<Button
 								id="smallEditButton"
@@ -147,8 +140,8 @@ export default function QuestionComponent({question, ...props}) {
 					)}
 					<article>
 						{answers.map(answer => {
-							if (question.answers.find(element => element === answer.id)) {
-								return <p key={answer.id}>{answer.answerText}</p>;
+							if (question._id === answer.questionID) {
+								return <p key={answer._id}>{answer.answerText}</p>;
 							}
 							return null;
 						})}
@@ -156,7 +149,7 @@ export default function QuestionComponent({question, ...props}) {
 					<article>
 						<Form
 							onSubmit={event => {
-								addAnswer(event, question.id);
+								addAnswer(event);
 							}}
 							placeholderText="Type in your answer..."
 							submitButtonText={'->'}
