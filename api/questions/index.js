@@ -1,4 +1,4 @@
-import connectToMongodb from '../../backend/db/connect-to-mongodb';
+import connectToMongodb from '../../backend/lib/connect-to-mongodb';
 import Question from '../../backend/models/Question';
 
 export default async function handler(request, response) {

@@ -4,10 +4,10 @@ import mongooseAdapter from '@pforte/adapter-mongoose';
 import pforte from '@pforte/core';
 import githubProvider from '@pforte/provider-github';
 
-import dbConnect from '../../lib/dbConnect';
+import connectToMongodb from '../../backend/lib/connect-to-mongodb';
 
 export default pforte({
-	adapter: mongooseAdapter(dbConnect),
+	adapter: mongooseAdapter(connectToMongodb),
 	providers: [
 		githubProvider({
 			clientId: process.env.GITHUB_ID,
