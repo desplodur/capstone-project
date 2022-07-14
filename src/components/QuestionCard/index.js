@@ -4,6 +4,7 @@ import Button from '../Button';
 
 import {StyledQuestionComponent} from './styled';
 import {StyledContent} from './styled';
+import {StatusIndicator} from './styled';
 
 export default function QuestionComponent({question, ...props}) {
 	const navigate = useNavigate();
@@ -12,8 +13,7 @@ export default function QuestionComponent({question, ...props}) {
 		<StyledQuestionComponent {...props}>
 			<StyledContent>
 				<h4>{question.questionText}</h4>
-				<img
-					id="statusIndicator"
+				<StatusIndicator
 					src={
 						question.answered
 							? require('../../utils/icons/statusOpen.svg').default
