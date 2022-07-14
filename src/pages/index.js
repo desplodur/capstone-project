@@ -8,9 +8,9 @@ import UserLogin from '../components/UserLogin';
 import {useStore} from '../hooks/useStore';
 import withSession from '../session/withSession';
 
-function HomePage() {
+function HomePage({session}) {
+	console.log(session);
 	const addNewQuestion = useStore(state => state.addNewQuestion);
-	const activeUser = useStore(state => state.activeUser);
 	const [open, setOpen] = useState(false);
 
 	const createNewQuestion = event => {
@@ -18,7 +18,7 @@ function HomePage() {
 		const newQuestion = {
 			questionText: event.target.inputField.value,
 			answers: [],
-			userID: activeUser._id,
+			userID: session.user.id,
 			answered: false,
 		};
 		addNewQuestion(newQuestion);

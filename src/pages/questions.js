@@ -51,10 +51,11 @@ function QuestionPage({session}) {
 				</Button>
 				<article>
 					{filteredQuestions.map(question => {
+						console.log(question.userID === session.user.id);
 						return (
 							<QuestionComponent
 								key={question._id}
-								ownedQuestion={question.userId === session.user.id}
+								ownedQuestion={question.userID === session.user.id ? true : false}
 								question={question}
 							/>
 						);
