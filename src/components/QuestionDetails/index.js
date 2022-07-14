@@ -68,7 +68,6 @@ export default function QuestionDetails() {
 					</svg>
 				</Button>
 				<StyledImage
-					id="statusIndicator"
 					src={
 						question.answered
 							? require('../../utils/icons/statusOpen.svg').default
