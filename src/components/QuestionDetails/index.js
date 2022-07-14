@@ -20,6 +20,8 @@ export default function QuestionDetails() {
 	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
+
+	const fetchData = useStore(state => state.fetchData);
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
 
@@ -40,12 +42,14 @@ export default function QuestionDetails() {
 		const newQuestion = question;
 		newQuestion.questionText = event.target.inputField.value;
 		setQuestion(question._id, newQuestion);
+		fetchData();
 		event.target.reset();
 	};
 	const closeQuestion = () => {
 		const newQuestion = question;
 		newQuestion.answered = !question.answered;
 		setQuestion(question._id, newQuestion);
+		fetchData();
 	};
 
 	return (
