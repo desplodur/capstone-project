@@ -7,6 +7,7 @@ const StyledAnswerCard = styled.div`
 	padding: 0.5em;
 	border-radius: 8px;
 	background: var(--light);
+	color: var(--dark);
 	text-align: center;
 
 	::after {

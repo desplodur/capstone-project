@@ -16,9 +16,7 @@ export default function QuestionComponent({question, ...props}) {
 	const answers = useStore(state => state.answers.data);
 	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
-	const activeUser = useStore(state => state.activeUser);
-	console.log(session);
-	return null;
+
 	const addAnswer = event => {
 		event.preventDefault();
 		const newAnswer = {
@@ -39,7 +37,6 @@ export default function QuestionComponent({question, ...props}) {
 	const closeQuestion = () => {
 		const newQuestion = question;
 		newQuestion.answered = !question.answered;
-		console.log(newQuestion.answered);
 		setQuestion(question._id, newQuestion);
 	};
 
