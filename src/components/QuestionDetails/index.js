@@ -70,11 +70,11 @@ export default function QuestionDetails() {
 				<StyledImage
 					id="statusIndicator"
 					src={
-						!question.answered
+						question.answered
 							? require('../../utils/icons/statusOpen.svg').default
 							: require('../../utils/icons/statusClosed.svg').default
 					}
-					alt={!question.answered ? 'Open' : 'Closed '}
+					alt={question.answered ? 'Open' : 'Closed '}
 				/>
 				{question.userID === activeUser._id && (
 					<Button
@@ -84,11 +84,11 @@ export default function QuestionDetails() {
 					>
 						<StyledImage
 							src={
-								!question.answered
+								question.answered
 									? require('../../utils/icons/check.svg').default
 									: require('../../utils/icons/unCheck.svg').default
 							}
-							alt={!question.answered ? 'Open' : 'Closed'}
+							alt={question.answered ? 'Open' : 'Closed'}
 						/>
 					</Button>
 				)}

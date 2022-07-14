@@ -12,6 +12,15 @@ export default function QuestionComponent({question, ...props}) {
 		<StyledQuestionComponent {...props}>
 			<StyledContent>
 				<h4>{question.questionText}</h4>
+				<img
+					id="statusIndicator"
+					src={
+						question.answered
+							? require('../../utils/icons/statusOpen.svg').default
+							: require('../../utils/icons/statusClosed.svg').default
+					}
+					alt={question.answered ? 'Open' : 'Closed '}
+				/>
 			</StyledContent>
 
 			<Button
