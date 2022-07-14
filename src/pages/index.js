@@ -4,9 +4,11 @@ import {Helmet} from 'react-helmet';
 import Dialog from '../components/Dialog';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
+import UserLogin from '../components/UserLogin';
 import {useStore} from '../hooks/useStore';
+import withSession from '../session/withSession';
 
-export default function HomePage() {
+function HomePage() {
 	const addNewQuestion = useStore(state => state.addNewQuestion);
 	const activeUser = useStore(state => state.activeUser);
 	const [open, setOpen] = useState(false);
@@ -50,3 +52,4 @@ export default function HomePage() {
 		</Layout>
 	);
 }
+export default withSession(HomePage, <UserLogin />);
