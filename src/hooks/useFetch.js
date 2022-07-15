@@ -3,7 +3,7 @@ export function fetchData1() {
 }
 
 export function addNewAnswer(newAnswer) {
-	fetch('../../api/answers', {
+	return fetch('../../api/answers', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
