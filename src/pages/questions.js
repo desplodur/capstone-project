@@ -1,12 +1,11 @@
 import {useState} from 'react';
 import {Helmet} from 'react-helmet';
-import {useQuery} from 'react-query';
 
 import Button from '../components/Button';
 import Dialog from '../components/Dialog';
 import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionCard';
-import fetchData1 from '../hooks/useFetch';
+import {useData} from '../hooks/useQuery';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
@@ -14,7 +13,7 @@ export default function QuestionPage() {
 	const [filter, setFilter] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	const {isLoading, data} = useQuery('questions', fetchData1);
+	const {isLoading, data} = useData();
 	if (isLoading) {
 		return <h1>Loading...</h1>;
 	}
