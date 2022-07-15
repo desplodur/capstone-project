@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
-import {useAddNewAnswer, useData} from '../../hooks/useQuery';
+import {useAddNewAnswer, useData, useSetQuestion} from '../../hooks/useQuery';
 import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
@@ -16,12 +16,12 @@ import {StyledImage} from './styled';
 
 export default function QuestionDetails() {
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const setQuestion = useStore(state => state.setQuestion);
 	const activeUser = useStore(state => state.activeUser);
 
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
 	const {mutate: addNewAnswer} = useAddNewAnswer();
+	const {mutate: setQuestion} = useSetQuestion();
 
 	const {isLoading, data} = useData();
 	if (isLoading) {

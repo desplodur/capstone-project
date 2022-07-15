@@ -3,6 +3,7 @@ import {useQuery, useMutation, useQueryClient} from 'react-query';
 
 import {fetchData1} from './useFetch';
 import {addNewAnswer} from './useFetch';
+import {setQuestion} from './useFetch';
 
 export const useData = (onSuccess, onError) => {
 	return useQuery('myData', fetchData1, {
@@ -35,11 +36,39 @@ export const useAddNewAnswer = () => {
 		onSettled: () => {
 			queryClient.invalidateQueries('myData');
 		},
+	});
+};
 
-		// onSuccess: data => {
-		// 	queryClient.setQueryData('myData', oldQueryData => {
-		// 		return {...oldQueryData, answers: [...oldQueryData.answers, data.newAnswer]};
-		// 	});
-		// },
+export const useSetQuestion = () => {
+	const queryClient = useQueryClient();
+	return useMutation(setQuestion, {
+		onMutate: async newQuestion => {
+			console.log(newQuestion);
+			await queryClient.cancelQueries('myData');
+			const previousData = queryClient.getQueryData('myData');
+			queryClient.setQueryData('myData', oldQueryData => {
+				const newData = oldQueryData.questions.map(question => {
+					if (question._id === newQuestion._id) {
+						return (question = newQuestion);
+					}
+					return question;
+				});
+				console.log(newData);
+
+				return {
+					...oldQueryData,
+					questions: newData,
+				};
+			});
+			return {
+				previousData,
+			};
+		},
+		onError: (_error, _newAnswer, context) => {
+			queryClient.setQueryData('myData', context.previousData);
+		},
+		onSettled: () => {
+			queryClient.invalidateQueries('myData');
+		},
 	});
 };
