@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledDialog = styled.dialog`
 	position: absolute;
+	z-index: 1;
 	top: 40%;
 	margin: 0 auto;
 	padding: 1em;

@@ -4,6 +4,7 @@ const StyledButton = styled.button`
 	border: none;
 	background-color: transparent;
 	color: var(--light);
+	font-size: 1em;
 	${props =>
 		props.submitButton &&
 		css`
@@ -30,10 +31,9 @@ const StyledButton = styled.button`
 		css`
 			font-size: 0.4rem;
 		`}
-			${props =>
+	${props =>
 		props.editButtonBig &&
 		css`
-			font-size: 1rem;
 			color: var(--dark);
 		`}
 `;

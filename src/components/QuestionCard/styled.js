@@ -38,3 +38,9 @@ export const StyledQuestionComponent = styled.section`
 export const StyledContent = styled.div`
 	padding: 1em 4em 1em 1em;
 `;
+
+export const StatusIndicator = styled.img`
+	position: absolute;
+	top: 5px;
+	right: 5px;
+`;

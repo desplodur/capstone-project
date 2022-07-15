@@ -4,6 +4,7 @@ const StyledNavBar = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	height: 100%;
 	padding: 0.2em 0 0.2em 0;
 	background-color: var(--blue);
 `;
