@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet';
+import {useQuery} from 'react-query';
 
 import Button from '../components/Button';
 import Dialog from '../components/Dialog';
 import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionCard';
+import fetchData1 from '../hooks/useFetch';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
@@ -14,18 +16,24 @@ export default function QuestionPage() {
 	const [filter, setFilter] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			fetchData();
-		}, 1000);
-		return () => clearInterval(intervalId);
-	});
-
+	const {isLoading, data} = useQuery('questions', fetchData1);
+	if (isLoading) {
+		return <h1>Loading...</h1>;
+	}
+	console.log(data);
+	return (
+		<>
+			<h1>helooo</h1>
+			{data?.questions.map(question => {
+				return <div key={question._id}>{question.questionText}</div>;
+			})}
+		</>
+	);
+	/*
 	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
 		? questions.filter(question => question.userID === activeUser._id)
 		: questions;
-
 	return (
 		<Layout>
 			<Helmet>
@@ -67,5 +75,5 @@ export default function QuestionPage() {
 				})}
 			</article>
 		</Layout>
-	);
+	);*/
 }

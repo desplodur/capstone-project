@@ -51,7 +51,7 @@ export default function QuestionDetails() {
 		setQuestion(question._id, newQuestion);
 		fetchData();
 	};
-
+	return null;
 	return (
 		<StyledQuestionDetails>
 			<StyledNavigation>
