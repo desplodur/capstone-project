@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 
-export const StyledQuestionComponent = styled.section`
+export const StyledQuestionCard = styled.section`
 	position: relative;
 	width: 90vw;
 	margin: 0.5em 0 0.5em 0;

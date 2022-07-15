@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
+import {useData} from '../../hooks/useQuery';
 import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
@@ -15,17 +16,20 @@ import {StyledImage} from './styled';
 
 export default function QuestionDetails() {
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const questions = useStore(state => state.questions.data);
-	const answers = useStore(state => state.answers.data);
 	const setQuestion = useStore(state => state.setQuestion);
 	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
 
-	const fetchData = useStore(state => state.fetchData);
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
 
-	const question = questions.find(question => question._id === idFromUrl);
+	const {isLoading, data} = useData();
+	if (isLoading) {
+		return <h1>Loading...</h1>;
+	}
+
+	const question = data.questions.find(question => question._id === idFromUrl);
+	console.log(question);
 
 	const addAnswer = event => {
 		event.preventDefault();
@@ -42,16 +46,13 @@ export default function QuestionDetails() {
 		const newQuestion = question;
 		newQuestion.questionText = event.target.inputField.value;
 		setQuestion(question._id, newQuestion);
-		fetchData();
 		event.target.reset();
 	};
 	const closeQuestion = () => {
 		const newQuestion = question;
 		newQuestion.answered = !question.answered;
 		setQuestion(question._id, newQuestion);
-		fetchData();
 	};
-	return null;
 	return (
 		<StyledQuestionDetails>
 			<StyledNavigation>
@@ -123,7 +124,7 @@ export default function QuestionDetails() {
 			</StyledQuestionHead>
 
 			<StyledQuestionBody>
-				{answers.map(answer => {
+				{data?.answers.map(answer => {
 					if (question._id === answer.questionID) {
 						return <AnswerCard key={answer._id}>{answer.answerText}</AnswerCard>;
 					}

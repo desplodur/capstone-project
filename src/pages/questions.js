@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 import {useQuery} from 'react-query';
 
@@ -10,9 +10,7 @@ import fetchData1 from '../hooks/useFetch';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
-	const questions = useStore(state => state.questions.data);
 	const activeUser = useStore(state => state.activeUser);
-	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
 	const [open, setOpen] = useState(false);
 
@@ -20,20 +18,12 @@ export default function QuestionPage() {
 	if (isLoading) {
 		return <h1>Loading...</h1>;
 	}
-	console.log(data);
-	return (
-		<>
-			<h1>helooo</h1>
-			{data?.questions.map(question => {
-				return <div key={question._id}>{question.questionText}</div>;
-			})}
-		</>
-	);
-	/*
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+
+	data?.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser._id)
-		: questions;
+		? data?.questions.filter(question => question.userID === activeUser._id)
+		: data?.questions;
+
 	return (
 		<Layout>
 			<Helmet>
@@ -75,5 +65,5 @@ export default function QuestionPage() {
 				})}
 			</article>
 		</Layout>
-	);*/
+	);
 }
