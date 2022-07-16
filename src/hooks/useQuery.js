@@ -44,15 +44,15 @@ export const useSetQuestion = () => {
 		onMutate: async newQuestion => {
 			await queryClient.cancelQueries('myData');
 			const previousData = queryClient.getQueryData('myData');
+			console.log(previousData);
 			queryClient.setQueryData('myData', oldQueryData => {
+				console.log(oldQueryData);
 				oldQueryData.questions.map(question => {
 					if (question._id === newQuestion._id) {
 						return (question = newQuestion);
 					}
 					return question;
 				});
-				console.log(previousData);
-				console.log(oldQueryData);
 				return oldQueryData;
 			});
 			return {
