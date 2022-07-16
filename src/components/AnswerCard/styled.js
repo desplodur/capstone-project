@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const StyledAnswerCard = styled.div`
 	position: relative;
 	width: fit-content;
-	margin: 0.5em auto 0.5em 0;
 	padding: 0.5em;
 	border-radius: 8px;
 	background: var(--light);
