@@ -57,50 +57,6 @@ export const useStore = create(set => ({
 		});
 	},
 
-	addNewAnswer: newAnswer => {
-		fetch('../../api/answers', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(newAnswer),
-		}).catch(error => {
-			set({
-				data: '',
-				error: error.message,
-			});
-		});
-		set(state => {
-			return {
-				answers: {data: [...state.answers.data, newAnswer]},
-			};
-		});
-	},
-
-	setQuestion: (questionID, newQuestion) => {
-		fetch(`../../api/questions/${questionID}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(newQuestion),
-		}).catch(error => {
-			set({
-				data: '',
-				error: error.message,
-			});
-		});
-		set(state => {
-			state.questions.data.map(question => {
-				if (question._id === questionID) {
-					return {
-						questions: {data: newQuestion},
-					};
-				}
-				return null;
-			});
-		});
-	},
 	changeUsername: (activeUserID, newUser) => {
 		fetch(`../../api/users/${activeUserID}`, {
 			method: 'PUT',

@@ -43,13 +43,12 @@ export default function QuestionDetails() {
 		event.preventDefault();
 		const newQuestion = question;
 		newQuestion.questionText = event.target.inputField.value;
-		setQuestion(question._id, newQuestion);
+		setQuestion(newQuestion);
 		event.target.reset();
 	};
 	const closeQuestion = () => {
-		const newQuestion = question;
-		newQuestion.answered = !question.answered;
-		setQuestion(question._id, newQuestion);
+		question.answered = !question.answered;
+		setQuestion(question);
 	};
 	return (
 		<StyledQuestionDetails>

@@ -1,9 +1,9 @@
 export function fetchData1() {
-	return fetch('../../api').then(response => response.json());
+	return fetch('/api').then(response => response.json());
 }
 
 export function addNewAnswer(newAnswer) {
-	return fetch('../../api/answers', {
+	return fetch('/api/answers', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ export function addNewAnswer(newAnswer) {
 	});
 }
 
-export function setQuestion(questionID, newQuestion) {
-	fetch(`../../api/questions/${questionID}`, {
+export function setQuestion(newQuestion) {
+	fetch(`/api/questions/${newQuestion._id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',

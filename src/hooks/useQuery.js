@@ -25,7 +25,6 @@ export const useAddNewAnswer = () => {
 					answers: [...oldQueryData.answers, {_id: nanoid, ...newAnswer}],
 				};
 			});
-			console.log(previousData);
 			return {
 				previousData,
 			};
@@ -43,22 +42,18 @@ export const useSetQuestion = () => {
 	const queryClient = useQueryClient();
 	return useMutation(setQuestion, {
 		onMutate: async newQuestion => {
-			console.log(newQuestion);
 			await queryClient.cancelQueries('myData');
 			const previousData = queryClient.getQueryData('myData');
 			queryClient.setQueryData('myData', oldQueryData => {
-				const newData = oldQueryData.questions.map(question => {
+				oldQueryData.questions.map(question => {
 					if (question._id === newQuestion._id) {
 						return (question = newQuestion);
 					}
 					return question;
 				});
-				console.log(newData);
-
-				return {
-					...oldQueryData,
-					questions: newData,
-				};
+				console.log(previousData);
+				console.log(oldQueryData);
+				return oldQueryData;
 			});
 			return {
 				previousData,
