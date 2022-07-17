@@ -1,8 +1,12 @@
 import styled, {css} from 'styled-components';
 
 export const StyledQuestionCard = styled.section`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	position: relative;
-	width: 90vw;
+	width: 85vw;
+	min-height: 8em;
 	margin: 0.5em 0 0.5em 0;
 	border: var(--dark);
 	border-radius: 8px;
@@ -14,19 +18,6 @@ export const StyledQuestionCard = styled.section`
 		top: 5px;
 		right: 5px;
 	}
-
-	button#smallEditButton {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-	}
-
-	button#changeStatus {
-		position: absolute;
-		top: 50px;
-		right: 10px;
-	}
-
 	${props =>
 		props.ownedQuestion &&
 		css`

@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 const StyledProfile = styled.section`
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	width: 100vw;
+	align-items: center;
 	height: 100vh;
 `;
 

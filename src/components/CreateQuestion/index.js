@@ -40,19 +40,19 @@ export default function CreateQuestion() {
 				<h3>Is there something you did not understand?</h3>
 				<h3>Ask your classmates!</h3>
 			</StyledCreateQuestionText>
-
-			<Form
-				onSubmit={event => {
-					createNewQuestion(event);
-					setOpen(!open);
-					setTimeout(() => {
-						setOpen(false);
-					}, 1000);
-				}}
-				placeholderText={'...'}
-				submitButtonText={'Ask your Question'}
-			/>
 			<>
+				<Form
+					onSubmit={event => {
+						createNewQuestion(event);
+						setOpen(!open);
+						setTimeout(() => {
+							setOpen(false);
+						}, 1000);
+					}}
+					placeholderText={'...'}
+					submitButtonText={'Ask'}
+				/>
+
 				<Dialog open={open}>
 					<h3>Question Created</h3>
 				</Dialog>
