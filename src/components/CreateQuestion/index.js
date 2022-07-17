@@ -6,6 +6,8 @@ import {useStore} from '../../hooks/useStore';
 import Dialog from '../Dialog';
 import Form from '../Form';
 
+import StyledCreateQuestion from './styled';
+
 export default function CreateQuestion() {
 	const activeUser = useStore(state => state.activeUser);
 	const [open, setOpen] = useState(false);
@@ -24,7 +26,7 @@ export default function CreateQuestion() {
 	};
 
 	return (
-		<>
+		<StyledCreateQuestion>
 			<Helmet>
 				<title key="title">My Project</title>
 				<meta key="description" name="description" content="This is my project" />
@@ -47,6 +49,6 @@ export default function CreateQuestion() {
 					<h3>Question Created</h3>
 				</Dialog>
 			</>
-		</>
+		</StyledCreateQuestion>
 	);
 }

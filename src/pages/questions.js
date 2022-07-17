@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet';
 import Button from '../components/Button';
 import Dialog from '../components/Dialog';
 import Layout from '../components/Layout';
+import LoadingScreen from '../components/LoadingScreen';
 import QuestionComponent from '../components/QuestionCard';
 import {useGetData} from '../hooks/useQuery';
 import {useStore} from '../hooks/useStore';
@@ -15,7 +16,7 @@ export default function QuestionPage() {
 
 	const myData = useGetData();
 	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
-		return <h1>Loading..</h1>;
+		return <LoadingScreen />;
 	}
 
 	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));

@@ -7,6 +7,7 @@ import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
 import Form from '../Form';
+import LoadingScreen from '../LoadingScreen';
 
 import {StyledQuestionDetails} from './styled';
 import {StyledNavigation} from './styled';
@@ -25,7 +26,7 @@ export default function QuestionDetails() {
 	const myData = useGetData();
 
 	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
-		return <h1>Loading..</h1>;
+		return <LoadingScreen />;
 	}
 
 	const question = myData.questions.data.questions.find(question => question._id === idFromUrl);
