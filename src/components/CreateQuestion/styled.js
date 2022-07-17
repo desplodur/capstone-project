@@ -8,6 +8,6 @@ export const StyledCreateQuestion = styled.section`
 `;
 
 export const StyledCreateQuestionText = styled.article`
-	text-align: center;
 	margin-bottom: 2em;
+	text-align: center;
 `;

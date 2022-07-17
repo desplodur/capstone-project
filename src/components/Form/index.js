@@ -1,5 +1,3 @@
-import Button from '../Button';
-
 import StyledForm from './styled';
 
 export default function Form({onSubmit, placeholderText, submitButtonText}) {
