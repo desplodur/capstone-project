@@ -6,7 +6,8 @@ import {useStore} from '../../hooks/useStore';
 import Dialog from '../Dialog';
 import Form from '../Form';
 
-import StyledCreateQuestion from './styled';
+import {StyledCreateQuestion} from './styled';
+import {StyledCreateQuestionText} from './styled';
 
 export default function CreateQuestion() {
 	const activeUser = useStore(state => state.activeUser);
@@ -28,11 +29,18 @@ export default function CreateQuestion() {
 	return (
 		<StyledCreateQuestion>
 			<Helmet>
-				<title key="title">My Project</title>
-				<meta key="description" name="description" content="This is my project" />
+				<title key="title">Create Question</title>
+				<meta
+					key="create_question"
+					name="Create_question_page"
+					content="This app helps to answer small problems of understanding"
+				/>
 			</Helmet>
-			<h3>Is there something you did not understand?</h3>
-			<h3>Ask your classmates!</h3>
+			<StyledCreateQuestionText>
+				<h3>Is there something you did not understand?</h3>
+				<h3>Ask your classmates!</h3>
+			</StyledCreateQuestionText>
+
 			<Form
 				onSubmit={event => {
 					createNewQuestion(event);
