@@ -1,5 +1,15 @@
-export function fetchData1() {
-	return fetch('/api').then(response => response.json());
+export function fetchQuestions() {
+	return fetch('/api/questions').then(response =>
+		response.json().then(data => {
+			console.log(data);
+		})
+	);
+}
+export function fetchAnswers() {
+	return fetch('/api/answers').then(response => response.json());
+}
+export function fetchUsers() {
+	return fetch('/api/users').then(response => response.json());
 }
 
 export function addNewAnswer(newAnswer) {

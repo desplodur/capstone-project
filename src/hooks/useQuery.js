@@ -1,12 +1,30 @@
 import {nanoid} from 'nanoid';
 import {useQuery, useMutation, useQueryClient} from 'react-query';
 
-import {fetchData1} from './useFetch';
+import {fetchQuestions} from './useFetch';
+import {fetchAnswers} from './useFetch';
+import {fetchUsers} from './useFetch';
 import {addNewAnswer} from './useFetch';
 import {setQuestion} from './useFetch';
 
-export const useData = (onSuccess, onError) => {
-	return useQuery('myData', fetchData1, {
+export const useGetQuestions = (onSuccess, onError) => {
+	const questions = useQuery('myQuestions', fetchQuestions, {
+		onSuccess,
+		onError,
+		//refetchInterval: 2000,
+	});
+	console.log(questions);
+	return questions;
+};
+export const useGetAnswers = (onSuccess, onError) => {
+	return useQuery('myAnswers', fetchAnswers, {
+		onSuccess,
+		onError,
+		//refetchInterval: 2000,
+	});
+};
+export const useGetUsers = (onSuccess, onError) => {
+	return useQuery('myUsers', fetchUsers, {
 		onSuccess,
 		onError,
 		//refetchInterval: 2000,
@@ -38,26 +56,13 @@ export const useAddNewAnswer = () => {
 	});
 };
 
-export const useSetQuestion = () => {
+export const useSetQuestion = questions => {
 	const queryClient = useQueryClient();
 	return useMutation(setQuestion, {
 		onMutate: async newQuestion => {
 			await queryClient.cancelQueries('myData');
 			const previousData = queryClient.getQueryData('myData');
 			console.log(previousData);
-			queryClient.setQueryData('myData', oldQueryData => {
-				console.log(oldQueryData);
-				oldQueryData.questions.map(question => {
-					if (question._id === newQuestion._id) {
-						return (question = newQuestion);
-					}
-					return question;
-				});
-				return oldQueryData;
-			});
-			return {
-				previousData,
-			};
 		},
 		onError: (_error, _newAnswer, context) => {
 			queryClient.setQueryData('myData', context.previousData);
