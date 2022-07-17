@@ -30,9 +30,11 @@ export const StyledQuestionHead = styled.article`
 	margin: 1em 0 1em 0;
 `;
 export const StyledQuestionBody = styled.article`
-	position: relative;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: flex-end;
+	min-height: 10em;
+	padding-bottom: 3em;
 	gap: 0.5em;
 `;

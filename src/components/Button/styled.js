@@ -34,10 +34,5 @@ const StyledButton = styled.button`
 		css`
 			font-size: 0.4rem;
 		`}
-	${props =>
-		props.editButtonBig &&
-		css`
-			color: var(--dark);
-		`}
 `;
 export default StyledButton;

@@ -131,6 +131,7 @@ export default function QuestionDetails() {
 				})}
 
 				<Form
+					fixedForm={true}
 					onSubmit={event => {
 						addAnswer(event);
 					}}

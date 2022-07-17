@@ -2,9 +2,9 @@ import styled, {css} from 'styled-components';
 
 export const StyledQuestionCard = styled.section`
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: space-between;
-	position: relative;
 	width: 85vw;
 	min-height: 8em;
 	margin: 0.5em 0 0.5em 0;
@@ -18,6 +18,7 @@ export const StyledQuestionCard = styled.section`
 		top: 5px;
 		right: 5px;
 	}
+
 	${props =>
 		props.ownedQuestion &&
 		css`
