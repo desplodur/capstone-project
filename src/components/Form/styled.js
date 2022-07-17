@@ -5,14 +5,14 @@ const StyledForm = styled.form`
 	width: 100%;
 	height: 2em;
 	input {
-		width: 80%;
+		width: 95em;
 		height: 100%;
 		border: 2px solid var(--dark);
 		border-radius: 5px 0 0 5px;
 		background-color: var(--light);
 	}
 	button {
-		width: 20%;
+		width: 5em;
 		height: 100%;
 		border: 2px solid var(--dark);
 		border-radius: 0 5px 5px 0;
