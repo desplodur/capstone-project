@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 const StyledProfile = styled.section`
-	margin: 0 auto;
-
-	article {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
 `;
 
 export default StyledProfile;

@@ -1,30 +1,28 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Button from '../components/Button';
 import Dialog from '../components/Dialog';
 import Layout from '../components/Layout';
+import LoadingScreen from '../components/LoadingScreen';
 import QuestionComponent from '../components/QuestionCard';
+import {useGetData} from '../hooks/useQuery';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
-	const questions = useStore(state => state.questions.data);
 	const activeUser = useStore(state => state.activeUser);
-	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			fetchData();
-		}, 1000);
-		return () => clearInterval(intervalId);
-	});
+	const myData = useGetData();
+	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+		return <LoadingScreen />;
+	}
 
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === activeUser._id)
-		: questions;
+		? myData.questions.data.questions?.filter(question => question.userID === activeUser._id)
+		: myData.questions.data.questions;
 
 	return (
 		<Layout>

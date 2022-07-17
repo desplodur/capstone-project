@@ -1,3 +1,4 @@
+import {QueryClientProvider, QueryClient} from 'react-query';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import Home from './pages';
@@ -6,9 +7,11 @@ import QuestionDetailPage from './pages/questionDetailPage';
 import QuestionPage from './pages/questions';
 import {GlobalStyle} from './styles';
 
+const queryClient = new QueryClient();
+
 export default function App() {
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<GlobalStyle />
 			<BrowserRouter>
 				<Routes>
@@ -20,6 +23,6 @@ export default function App() {
 					</Route>
 				</Routes>
 			</BrowserRouter>
-		</>
+		</QueryClientProvider>
 	);
 }

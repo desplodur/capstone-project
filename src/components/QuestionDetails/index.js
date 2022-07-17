@@ -2,10 +2,12 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
+import {useAddNewAnswer, useSetQuestion, useGetData} from '../../hooks/useQuery';
 import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
 import Form from '../Form';
+import LoadingScreen from '../LoadingScreen';
 
 import {StyledQuestionDetails} from './styled';
 import {StyledNavigation} from './styled';
@@ -15,17 +17,19 @@ import {StyledImage} from './styled';
 
 export default function QuestionDetails() {
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-	const questions = useStore(state => state.questions.data);
-	const answers = useStore(state => state.answers.data);
-	const setQuestion = useStore(state => state.setQuestion);
-	const addNewAnswer = useStore(state => state.addNewAnswer);
 	const activeUser = useStore(state => state.activeUser);
 
-	const fetchData = useStore(state => state.fetchData);
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
+	const {mutate: addNewAnswer} = useAddNewAnswer();
+	const {mutate: setQuestion} = useSetQuestion();
+	const myData = useGetData();
 
-	const question = questions.find(question => question._id === idFromUrl);
+	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+		return <LoadingScreen />;
+	}
+
+	const question = myData.questions.data.questions.find(question => question._id === idFromUrl);
 
 	const addAnswer = event => {
 		event.preventDefault();
@@ -41,17 +45,13 @@ export default function QuestionDetails() {
 		event.preventDefault();
 		const newQuestion = question;
 		newQuestion.questionText = event.target.inputField.value;
-		setQuestion(question._id, newQuestion);
-		fetchData();
+		setQuestion(newQuestion);
 		event.target.reset();
 	};
 	const closeQuestion = () => {
-		const newQuestion = question;
-		newQuestion.answered = !question.answered;
-		setQuestion(question._id, newQuestion);
-		fetchData();
+		question.answered = !question.answered;
+		setQuestion(question);
 	};
-
 	return (
 		<StyledQuestionDetails>
 			<StyledNavigation>
@@ -123,7 +123,7 @@ export default function QuestionDetails() {
 			</StyledQuestionHead>
 
 			<StyledQuestionBody>
-				{answers.map(answer => {
+				{myData.answers.data.answers.map(answer => {
 					if (question._id === answer.questionID) {
 						return <AnswerCard key={answer._id}>{answer.answerText}</AnswerCard>;
 					}
@@ -131,6 +131,7 @@ export default function QuestionDetails() {
 				})}
 
 				<Form
+					fixedForm={true}
 					onSubmit={event => {
 						addAnswer(event);
 					}}

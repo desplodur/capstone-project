@@ -33,7 +33,6 @@ export const GlobalStyle = createGlobalStyle`
 		flex-wrap: nowrap;
 		align-items: center;
 		justify-content: center;
-		height: auto;
 		margin-bottom: 10vh;		
 	}
 
