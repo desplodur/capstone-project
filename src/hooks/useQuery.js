@@ -5,6 +5,7 @@ import {fetchQuestions} from './useFetch';
 import {fetchAnswers} from './useFetch';
 import {fetchUsers} from './useFetch';
 import {addNewAnswer} from './useFetch';
+import {addNewQuestion} from './useFetch';
 import {setQuestion} from './useFetch';
 
 export const useGetData = (onSuccess, onError) => {
@@ -38,6 +39,10 @@ export const useAddNewAnswer = () => {
 			queryClient.invalidateQueries('myAnswer');
 		},
 	});
+};
+
+export const useAddNewQuestion = () => {
+	return useMutation(addNewQuestion);
 };
 
 export const useSetQuestion = () => {

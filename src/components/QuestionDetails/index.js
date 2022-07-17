@@ -22,8 +22,8 @@ export default function QuestionDetails() {
 	const {idFromUrl} = useParams();
 	const {mutate: addNewAnswer} = useAddNewAnswer();
 	const {mutate: setQuestion} = useSetQuestion();
-
 	const myData = useGetData();
+
 	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
 		return <h1>Loading..</h1>;
 	}

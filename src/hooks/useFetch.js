@@ -28,6 +28,22 @@ export function addNewAnswer(newAnswer) {
 	});
 }
 
+export function addNewQuestion(newQuestion) {
+	return fetch('/api/questions', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(newQuestion),
+	}).then(response => {
+		if (response.ok) {
+			return response.json();
+		} else {
+			throw new Error("Server response wasn't OK");
+		}
+	});
+}
+
 export function setQuestion(newQuestion) {
 	fetch(`/api/questions/${newQuestion._id}`, {
 		method: 'PUT',
