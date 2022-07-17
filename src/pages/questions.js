@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Dialog from '../components/Dialog';
 import Layout from '../components/Layout';
 import QuestionComponent from '../components/QuestionCard';
-import {useGetQuestions} from '../hooks/useQuery';
+import {useGetData} from '../hooks/useQuery';
 import {useStore} from '../hooks/useStore';
 
 export default function QuestionPage() {
@@ -13,16 +13,15 @@ export default function QuestionPage() {
 	const [filter, setFilter] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	const {isLoading, questions} = useGetQuestions();
-	console.log(questions?.questions);
-	if (isLoading) {
-		return <h1>Loading...</h1>;
+	const myData = useGetData();
+	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+		return <h1>Loading..</h1>;
 	}
 
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions?.filter(question => question.userID === activeUser._id)
-		: questions;
+		? myData.questions.data.questions?.filter(question => question.userID === activeUser._id)
+		: myData.questions.data.questions;
 
 	return (
 		<Layout>

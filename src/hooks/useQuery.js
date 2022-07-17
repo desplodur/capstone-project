@@ -7,40 +7,24 @@ import {fetchUsers} from './useFetch';
 import {addNewAnswer} from './useFetch';
 import {setQuestion} from './useFetch';
 
-export const useGetQuestions = (onSuccess, onError) => {
-	const questions = useQuery('myQuestions', fetchQuestions, {
-		onSuccess,
-		onError,
-		//refetchInterval: 2000,
-	});
-	console.log(questions);
-	return questions;
-};
-export const useGetAnswers = (onSuccess, onError) => {
-	return useQuery('myAnswers', fetchAnswers, {
-		onSuccess,
-		onError,
-		//refetchInterval: 2000,
-	});
-};
-export const useGetUsers = (onSuccess, onError) => {
-	return useQuery('myUsers', fetchUsers, {
-		onSuccess,
-		onError,
-		//refetchInterval: 2000,
-	});
+export const useGetData = (onSuccess, onError) => {
+	const questions = useQuery('myQuestions', fetchQuestions);
+	const answers = useQuery('myAnswer', fetchAnswers);
+	const users = useQuery('myUsers', fetchUsers);
+
+	return {questions, answers, users};
 };
 
 export const useAddNewAnswer = () => {
 	const queryClient = useQueryClient();
 	return useMutation(addNewAnswer, {
 		onMutate: async newAnswer => {
-			await queryClient.cancelQueries('myData');
-			const previousData = queryClient.getQueryData('myData');
-			queryClient.setQueryData('myData', oldQueryData => {
+			await queryClient.cancelQueries('myAnswer');
+			const previousData = queryClient.getQueryData('myAnswer');
+			queryClient.setQueryData('myAnswer', oldQueryData => {
 				return {
 					...oldQueryData,
-					answers: [...oldQueryData.answers, {_id: nanoid, ...newAnswer}],
+					answers: [...oldQueryData.answers, {_id: nanoid(), ...newAnswer}],
 				};
 			});
 			return {
@@ -48,27 +32,28 @@ export const useAddNewAnswer = () => {
 			};
 		},
 		onError: (_error, _newAnswer, context) => {
-			queryClient.setQueryData('myData', context.previousData);
+			queryClient.setQueryData('myAnswer', context.previousData);
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries('myData');
+			queryClient.invalidateQueries('myAnswer');
 		},
 	});
 };
 
-export const useSetQuestion = questions => {
+export const useSetQuestion = () => {
 	const queryClient = useQueryClient();
 	return useMutation(setQuestion, {
 		onMutate: async newQuestion => {
-			await queryClient.cancelQueries('myData');
-			const previousData = queryClient.getQueryData('myData');
-			console.log(previousData);
+			await queryClient.cancelQueries('myQuestions', newQuestion._id);
+			const previousQuestion = queryClient.getQueryData(['myQuestions', newQuestion._id]);
+			queryClient.setQueryData(['myQuestions', newQuestion._id], newQuestion);
+			return {previousQuestion, newQuestion};
 		},
 		onError: (_error, _newAnswer, context) => {
-			queryClient.setQueryData('myData', context.previousData);
-		},
-		onSettled: () => {
-			queryClient.invalidateQueries('myData');
+			queryClient.setQueryData(
+				['myQuestions', context.newQuestion._id],
+				context.previousQuestion
+			);
 		},
 	});
 };

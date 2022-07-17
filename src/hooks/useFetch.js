@@ -1,9 +1,9 @@
+export function fetchData() {
+	return fetch('/api').then(response => response.json());
+}
+
 export function fetchQuestions() {
-	return fetch('/api/questions').then(response =>
-		response.json().then(data => {
-			console.log(data);
-		})
-	);
+	return fetch('/api/questions').then(response => response.json());
 }
 export function fetchAnswers() {
 	return fetch('/api/answers').then(response => response.json());

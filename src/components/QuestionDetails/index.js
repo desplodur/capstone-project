@@ -2,12 +2,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
-import {
-	useAddNewAnswer,
-	useGetQuestions,
-	useSetQuestion,
-	useGetAnswers,
-} from '../../hooks/useQuery';
+import {useAddNewAnswer, useSetQuestion, useGetData} from '../../hooks/useQuery';
 import {useStore} from '../../hooks/useStore';
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
@@ -28,15 +23,12 @@ export default function QuestionDetails() {
 	const {mutate: addNewAnswer} = useAddNewAnswer();
 	const {mutate: setQuestion} = useSetQuestion();
 
-	const {isLoadingQuestions, questions} = useGetQuestions();
-	const {isLoadingAnswers, answers} = useGetAnswers();
-	if (isLoadingQuestions) {
-		return <h1>Loading...</h1>;
+	const myData = useGetData();
+	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+		return <h1>Loading..</h1>;
 	}
-	if (isLoadingAnswers) {
-		return <h1>Loading...</h1>;
-	}
-	const question = questions?.find(question => question._id === idFromUrl);
+
+	const question = myData.questions.data.questions.find(question => question._id === idFromUrl);
 
 	const addAnswer = event => {
 		event.preventDefault();
@@ -130,7 +122,7 @@ export default function QuestionDetails() {
 			</StyledQuestionHead>
 
 			<StyledQuestionBody>
-				{answers?.map(answer => {
+				{myData.answers.data.answers.map(answer => {
 					if (question._id === answer.questionID) {
 						return <AnswerCard key={answer._id}>{answer.answerText}</AnswerCard>;
 					}

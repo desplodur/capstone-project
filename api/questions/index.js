@@ -5,7 +5,7 @@ export default async function handler(request, response) {
 	await connectToMongodb();
 	if (request.method === 'GET') {
 		const questions = await Question.find({});
-		return response.status(200).json(questions);
+		return response.status(200).json({questions});
 	}
 
 	if (request.method === 'POST') {
