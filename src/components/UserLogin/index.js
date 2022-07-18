@@ -1,19 +1,22 @@
 import {signIn} from '@pforte/client';
 
+import Button from '../Button';
+
 import StyledUserLogin from './styled';
 
 export default function UserLogin() {
 	return (
 		<StyledUserLogin>
 			<h1>Sign in to join the Community</h1>
-			<button
+			<Button
+				loginButton={true}
 				type="button"
 				onClick={() => {
 					void signIn('github');
 				}}
 			>
 				Sign In with GitHub
-			</button>
+			</Button>
 		</StyledUserLogin>
 	);
 }
