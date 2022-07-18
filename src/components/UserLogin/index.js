@@ -12,7 +12,7 @@ export default function UserLogin() {
 				loginButton={true}
 				type="button"
 				onClick={() => {
-					void signIn('github');
+					signIn('github');
 				}}
 			>
 				Sign In with GitHub

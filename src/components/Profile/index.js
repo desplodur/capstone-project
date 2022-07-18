@@ -16,7 +16,7 @@ export default function ProfileComponent() {
 			<LogoutButton
 				type="button"
 				onClick={() => {
-					void signOut('github');
+					signOut('github');
 				}}
 			>
 				Sign out
