@@ -8,7 +8,6 @@ import {LogoutButton} from './styled';
 export default function ProfileComponent() {
 	const session = useSession();
 
-	console.log(session);
 	return (
 		<StyledProfile>
 			{session && <StyledProfilePicture src={session.user.image} alt={session.user.name} />}
