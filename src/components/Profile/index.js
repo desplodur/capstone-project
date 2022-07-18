@@ -1,8 +1,6 @@
 import {signOut} from '@pforte/client';
 import {useSession} from '@pforte/react';
 
-import Button from '../Button';
-
 import {StyledProfile} from './styled';
 import {StyledProfilePicture} from './styled';
 import {LogoutButton} from './styled';
