@@ -9,7 +9,6 @@ import {useStore} from '../hooks/useStore';
 import withSession from '../session/withSession';
 
 function HomePage({session}) {
-	console.log(session);
 	const addNewQuestion = useStore(state => state.addNewQuestion);
 	const [open, setOpen] = useState(false);
 

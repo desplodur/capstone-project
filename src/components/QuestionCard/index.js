@@ -1,7 +1,4 @@
-import {useSession} from '@pforte/react';
-import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-
 
 import Button from '../Button';
 
@@ -10,7 +7,6 @@ import {StyledContent} from './styled';
 import {StatusIndicator} from './styled';
 
 export default function QuestionComponent({question, ...props}) {
-
 	const navigate = useNavigate();
 
 	return (

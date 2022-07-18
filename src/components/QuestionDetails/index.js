@@ -13,7 +13,7 @@ import {StyledQuestionBody} from './styled';
 import {StyledQuestionHead} from './styled';
 import {StyledImage} from './styled';
 
-export default function QuestionDetails() {
+export default function QuestionDetails(session) {
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
 	const questions = useStore(state => state.questions.data);
 	const answers = useStore(state => state.answers.data);
@@ -24,6 +24,7 @@ export default function QuestionDetails() {
 	const fetchData = useStore(state => state.fetchData);
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
+	console.log(questions);
 
 	const question = questions.find(question => question._id === idFromUrl);
 
@@ -75,7 +76,7 @@ export default function QuestionDetails() {
 					}
 					alt={question.answered ? 'Open' : 'Closed '}
 				/>
-				{question.userID === activeUser._id && (
+				{question.userID === session.user.id && (
 					<Button
 						onClick={() => {
 							closeQuestion(question.id);
