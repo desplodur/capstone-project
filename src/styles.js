@@ -39,8 +39,8 @@ export const GlobalStyle = createGlobalStyle`
 	footer {
 		position: fixed;
 		bottom: 0;
+		height: 10vh;		
 		width: 100%;
-		height: 10vh;
 	}
 	h1,h2,h3,h4 {
 		margin:0;

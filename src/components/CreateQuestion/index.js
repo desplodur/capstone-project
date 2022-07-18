@@ -8,7 +8,7 @@ import Form from '../Form';
 import {StyledCreateQuestion} from './styled';
 import {StyledCreateQuestionText} from './styled';
 
-export default function CreateQuestion(session) {
+export default function CreateQuestion({session}) {
 	const [open, setOpen] = useState(false);
 	const {mutate: addNewQuestion} = useAddNewQuestion();
 

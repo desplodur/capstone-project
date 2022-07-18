@@ -26,8 +26,9 @@ const StyledForm = styled.form`
 			width: 100%;
 			padding: 0 1em 0 1em;
 			position: fixed;
-			bottom: 4em;
+			bottom: 0;
 			right: 0;
+			margin-bottom: 12vh;
 		`}
 `;
 
