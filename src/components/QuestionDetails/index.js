@@ -3,10 +3,6 @@ import {useNavigate} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
 import {useAddNewAnswer, useSetQuestion, useGetData} from '../../hooks/useQuery';
-<<<<<<< HEAD
-=======
-import {useStore} from '../../hooks/useStore';
->>>>>>> main
 import AnswerCard from '../AnswerCard';
 import Button from '../Button';
 import Form from '../Form';
@@ -20,10 +16,6 @@ import {StyledImage} from './styled';
 
 export default function QuestionDetails({session}) {
 	const [showEditQuestionForm, setShowEditQuestionForm] = useState(false);
-<<<<<<< HEAD
-=======
-	const activeUser = useStore(state => state.activeUser);
->>>>>>> main
 
 	const navigate = useNavigate();
 	const {idFromUrl} = useParams();
@@ -31,11 +23,7 @@ export default function QuestionDetails({session}) {
 	const {mutate: setQuestion} = useSetQuestion();
 	const myData = useGetData();
 
-<<<<<<< HEAD
 	if (myData.questions.isLoading || myData.answers.isLoading) {
-=======
-	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
->>>>>>> main
 		return <LoadingScreen />;
 	}
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-<<<<<<< HEAD
 export const StyledProfile = styled.section`
 	display: flex;
 	flex-direction: column;
@@ -12,13 +11,6 @@ export const StyledProfilePicture = styled.img`
 	margin: 2em;
 	border: 0.1em solid var(--dark);
 	border-radius: 100%;
-=======
-const StyledProfile = styled.section`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
->>>>>>> main
 `;
 
 export const LogoutButton = styled.button`

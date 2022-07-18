@@ -5,37 +5,21 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 import LoadingScreen from '../components/LoadingScreen';
 import QuestionComponent from '../components/QuestionCard';
-<<<<<<< HEAD
 import UserLogin from '../components/UserLogin';
 import {useGetData} from '../hooks/useQuery';
 import withSession from '../session/withSession';
 
 function QuestionPage({session}) {
-=======
-import {useGetData} from '../hooks/useQuery';
-import {useStore} from '../hooks/useStore';
-
-export default function QuestionPage() {
-	const activeUser = useStore(state => state.activeUser);
->>>>>>> main
 	const [filter, setFilter] = useState(false);
 
 	const myData = useGetData();
-<<<<<<< HEAD
 	if (myData.questions.isLoading || myData.answers.isLoading) {
-=======
-	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
->>>>>>> main
 		return <LoadingScreen />;
 	}
 
 	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-<<<<<<< HEAD
 		? myData.questions.data.questions?.filter(question => question.userID === session.user.id)
-=======
-		? myData.questions.data.questions?.filter(question => question.userID === activeUser._id)
->>>>>>> main
 		: myData.questions.data.questions;
 
 	return (
