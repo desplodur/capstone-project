@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledQuestionDetails = styled.section`
+	position: relative;
 	width: 100vw;
 	height: auto;
 	min-height: 90vh;
@@ -30,8 +31,10 @@ export const StyledQuestionHead = styled.article`
 `;
 export const StyledQuestionBody = styled.article`
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: flex-end;
-	min-height: 65vh;
+	min-height: 10em;
+	padding-bottom: 3em;
 	gap: 0.5em;
 `;

@@ -1,29 +1,27 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import Button from '../components/Button';
 import Layout from '../components/Layout';
+import LoadingScreen from '../components/LoadingScreen';
 import QuestionComponent from '../components/QuestionCard';
 import UserLogin from '../components/UserLogin';
-import {useStore} from '../hooks/useStore';
+import {useGetData} from '../hooks/useQuery';
 import withSession from '../session/withSession';
 
 function QuestionPage({session}) {
-	const questions = useStore(state => state.questions.data);
-	const fetchData = useStore(state => state.fetchData);
 	const [filter, setFilter] = useState(false);
 
-	useEffect(() => {
-		const intervalId = setInterval(() => {
-			fetchData();
-		}, 1000);
-		return () => clearInterval(intervalId);
-	});
+	const myData = useGetData();
+	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+		return <LoadingScreen />;
+	}
 
-	questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? questions.filter(question => question.userID === session.id)
-		: questions;
+		? myData.questions.data.questions?.filter(question => question.userID === activeUser._id)
+		: myData.questions.data.questions;
+
 	return (
 		<Layout>
 			<Helmet>
