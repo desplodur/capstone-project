@@ -2,13 +2,22 @@ import {useState} from 'react';
 import {Helmet} from 'react-helmet';
 
 import {useAddNewQuestion} from '../../hooks/useQuery';
+<<<<<<< HEAD
+=======
+import {useStore} from '../../hooks/useStore';
+>>>>>>> main
 import Dialog from '../Dialog';
 import Form from '../Form';
 
 import {StyledCreateQuestion} from './styled';
 import {StyledCreateQuestionText} from './styled';
 
+<<<<<<< HEAD
 export default function CreateQuestion(session) {
+=======
+export default function CreateQuestion() {
+	const activeUser = useStore(state => state.activeUser);
+>>>>>>> main
 	const [open, setOpen] = useState(false);
 	const {mutate: addNewQuestion} = useAddNewQuestion();
 
@@ -17,7 +26,11 @@ export default function CreateQuestion(session) {
 		const newQuestion = {
 			questionText: event.target.inputField.value,
 			answers: [],
+<<<<<<< HEAD
 			userID: session.user.id,
+=======
+			userID: activeUser._id,
+>>>>>>> main
 			answered: false,
 		};
 		addNewQuestion(newQuestion);
