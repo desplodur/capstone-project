@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const StyledUserLogin = styled.div`
 	display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
+	align-content: center;
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
