@@ -9,6 +9,8 @@ export const StyledCreateQuestion = styled.section`
 `;
 
 export const StyledCreateQuestionText = styled.article`
+	width: 40em;
 	margin-bottom: 2em;
+	font-size: 2em;
 	text-align: center;
 `;

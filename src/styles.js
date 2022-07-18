@@ -40,10 +40,11 @@ export const GlobalStyle = createGlobalStyle`
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-		height: 10vh;
+		height: 10vh;		
 	}
 	h1,h2,h3,h4 {
 		margin:0;
 		padding:0;
+		text-align: center;
 	 }
 `;

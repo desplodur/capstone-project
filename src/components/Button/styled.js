@@ -34,5 +34,14 @@ const StyledButton = styled.button`
 		css`
 			font-size: 0.4rem;
 		`}
+		${props =>
+		props.loginButton &&
+		css`
+			font-size: 2rem;
+			background-color: var(--dark);
+			margin: 1em;
+			padding: 1em;
+			border-radius: 8px;
+		`}
 `;
 export default StyledButton;

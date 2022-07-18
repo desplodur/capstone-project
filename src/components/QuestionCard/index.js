@@ -22,7 +22,6 @@ export default function QuestionCard({question, ...props}) {
 					alt={question.answered ? 'Open' : 'Closed '}
 				/>
 			</StyledContent>
-
 			<Button
 				greyButton={true}
 				onClick={() => {

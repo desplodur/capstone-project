@@ -1,3 +1,4 @@
+import {SessionProvider} from '@pforte/react';
 import {QueryClientProvider, QueryClient} from 'react-query';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -11,18 +12,20 @@ const queryClient = new QueryClient();
 
 export default function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<GlobalStyle />
-			<BrowserRouter>
-				<Routes>
-					<Route path="/">
-						<Route index element={<Home />} />
-						<Route path="questions/" element={<QuestionPage />} />
-						<Route path="profile/" element={<ProfilePage />} />
-						<Route path="/:idFromUrl" element={<QuestionDetailPage />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
-		</QueryClientProvider>
+		<SessionProvider>
+			<QueryClientProvider client={queryClient}>
+				<GlobalStyle />
+				<BrowserRouter>
+					<Routes>
+						<Route path="/">
+							<Route index element={<Home />} />
+							<Route path="questions/" element={<QuestionPage />} />
+							<Route path="profile/" element={<ProfilePage />} />
+							<Route path="/:idFromUrl" element={<QuestionDetailPage />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</QueryClientProvider>
+		</SessionProvider>
 	);
 }
