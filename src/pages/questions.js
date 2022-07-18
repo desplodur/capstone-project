@@ -13,13 +13,13 @@ function QuestionPage({session}) {
 	const [filter, setFilter] = useState(false);
 
 	const myData = useGetData();
-	if (myData.questions.isLoading || myData.answers.isLoading || myData.users.isLoading) {
+	if (myData.questions.isLoading || myData.answers.isLoading) {
 		return <LoadingScreen />;
 	}
 
 	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? myData.questions.data.questions?.filter(question => question.userID === activeUser._id)
+		? myData.questions.data.questions?.filter(question => question.userID === session.user.id)
 		: myData.questions.data.questions;
 
 	return (

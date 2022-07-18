@@ -8,9 +8,6 @@ export function fetchQuestions() {
 export function fetchAnswers() {
 	return fetch('/api/answers').then(response => response.json());
 }
-export function fetchUsers() {
-	return fetch('/api/users').then(response => response.json());
-}
 
 export function addNewAnswer(newAnswer) {
 	return fetch('/api/answers', {

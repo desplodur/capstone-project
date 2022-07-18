@@ -3,7 +3,6 @@ import {useQuery, useMutation, useQueryClient} from 'react-query';
 
 import {fetchQuestions} from './useFetch';
 import {fetchAnswers} from './useFetch';
-import {fetchUsers} from './useFetch';
 import {addNewAnswer} from './useFetch';
 import {addNewQuestion} from './useFetch';
 import {setQuestion} from './useFetch';
@@ -11,9 +10,8 @@ import {setQuestion} from './useFetch';
 export const useGetData = (onSuccess, onError) => {
 	const questions = useQuery('myQuestions', fetchQuestions);
 	const answers = useQuery('myAnswer', fetchAnswers);
-	const users = useQuery('myUsers', fetchUsers);
 
-	return {questions, answers, users};
+	return {questions, answers};
 };
 
 export const useAddNewAnswer = () => {
