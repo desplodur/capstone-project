@@ -28,7 +28,6 @@ export default function QuestionDetails({session}) {
 	}
 
 	const question = myData.questions.data.questions.find(question => question._id === idFromUrl);
-
 	const addAnswer = event => {
 		event.preventDefault();
 		const newAnswer = {
