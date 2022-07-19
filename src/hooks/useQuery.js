@@ -7,8 +7,8 @@ import {addNewAnswer} from './useFetch';
 import {addNewQuestion} from './useFetch';
 import {setQuestion} from './useFetch';
 
-export const useGetData = (onSuccess, onError) => {
-	const questions = useQuery('myQuestions', fetchQuestions);
+export const useGetData = () => {
+	const questions = useQuery('myQuestions', fetchQuestions, {refetchInterval: 5000});
 	const answers = useQuery('myAnswer', fetchAnswers);
 
 	return {questions, answers};
