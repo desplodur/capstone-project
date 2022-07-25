@@ -76,7 +76,7 @@ export default function QuestionDetails({session}) {
 				{question.userID === session.user.id && (
 					<Button
 						onClick={() => {
-							closeQuestion(question.id);
+							closeQuestion();
 						}}
 					>
 						<StyledImage
@@ -94,7 +94,7 @@ export default function QuestionDetails({session}) {
 				{showEditQuestionForm ? (
 					<Form
 						onSubmit={event => {
-							editQuestion(event, question.id);
+							editQuestion(event);
 							setShowEditQuestionForm(false);
 						}}
 						placeholderText={question.questionText}

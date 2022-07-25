@@ -11,7 +11,7 @@ export default function ProfileComponent() {
 	return (
 		<StyledProfile>
 			{session && <StyledProfilePicture src={session.user.image} alt={session.user.name} />}
-			<h1>{'Username: ' + session?.user.name ?? 'Loading...'}</h1>
+			<h1>{'Username: ' + session.user.name ?? 'Loading...'}</h1>
 			<LogoutButton
 				type="button"
 				onClick={() => {
