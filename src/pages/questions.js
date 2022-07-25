@@ -17,9 +17,9 @@ function QuestionPage({session}) {
 		return <LoadingScreen />;
 	}
 
-	myData.questions.data.questions.sort((a, b) => Number(a.answered) - Number(b.answered));
+	myData.questions.data.questions?.sort((a, b) => Number(a.answered) - Number(b.answered));
 	const filteredQuestions = filter
-		? myData.questions.data.questions?.filter(question => question.userID === session.user.id)
+		? myData.questions.data.questions.filter(question => question.userID === session.user.id)
 		: myData.questions.data.questions;
 
 	return (
